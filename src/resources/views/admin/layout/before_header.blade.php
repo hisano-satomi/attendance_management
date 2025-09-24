@@ -5,9 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>coachtech 勤怠管理アプリ</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/common/before_header.css') }}">
+    @yield('css')
 </head>
+
 <body>
-    
+    <header>
+        <div class="header-container">
+            <h1 class="header-logo">
+                <a href="/"><img src="{{ asset('images/logo.png') }}" alt=""></a>
+            </h1>
+        </div>
+    </header>
 </body>
 </html>
