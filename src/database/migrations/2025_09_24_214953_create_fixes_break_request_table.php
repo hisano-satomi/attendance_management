@@ -14,9 +14,8 @@ class CreateFixesBreakRequestTable extends Migration
     public function up()
     {
         Schema::create('fixes_break_request', function (Blueprint $table) {
-            $table->bigInteger('id');
-            $table->bigInteger('fixes_attendance_request_id')->unsigned();
-            $table->foreign('fixes_attendance_request_id')->references('id')->on('fixes_attendance_request');
+            $table->bigIncrements('id');
+            $table->foreignId('fixes_attendance_request_id')->constrained('fixes_attendance_request');
             $table->timestamp('break_start')->nullable();
             $table->timestamp('break_stop')->nullable();
             $table->timestamps();

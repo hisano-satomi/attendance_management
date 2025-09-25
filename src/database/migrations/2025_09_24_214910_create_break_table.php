@@ -14,9 +14,8 @@ class CreateBreakTable extends Migration
     public function up()
     {
         Schema::create('break', function (Blueprint $table) {
-            $table->bigInteger('id');
-            $table->bigInteger('attendance_id')->unsigned();
-            $table->foreign('attendance_id')->references('id')->on('attendance');
+            $table->bigIncrements('id');
+            $table->foreignId('attendance_id')->constrained('attendance');
             $table->timestamp('break_start')->nullable();
             $table->timestamp('break_stop')->nullable();
             $table->timestamps();

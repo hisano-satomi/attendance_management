@@ -14,9 +14,8 @@ class CreateAttendanceTable extends Migration
     public function up()
     {
         Schema::create('attendance', function (Blueprint $table) {
-            $table->bigInteger('id');
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->bigIncrements('id');
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamp('work_start')->nullable();
             $table->timestamp('work_stop')->nullable();
             $table->date('date');
