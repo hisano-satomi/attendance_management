@@ -1,9 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\SessionController;
+// use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\AuthorController;
+// use App\Http\Controllers\BookController;
+// use App\Http\Controllers\SessionController;
+
+// 管理者用
+use App\Http\Controllers\Admin\UserAuthController as AdminUserAuthController;
+
+
+// 一般ユーザー用
+use App\Http\Controllers\User\UserAuthController as GeneralUserAuthController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,32 +24,42 @@ use App\Http\Controllers\SessionController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-Route::get('/', [AuthorController::class, 'index']);
-Route::get('/add', [AuthorController::class, 'add']);
-Route::post('/add', [AuthorController::class, 'create']);
-Route::get('/edit', [AuthorController::class, 'edit']);
-Route::post('/edit', [AuthorController::class, 'update']);
-Route::get('/delete', [AuthorController::class, 'delete']);
-Route::post('/delete', [AuthorController::class, 'remove']);
-
-Route::get('/find', [AuthorController::class, 'find']);
-Route::post('/find', [AuthorController::class, 'search']);
-
-Route::get('/author/{author}', [AuthorController::class, 'bind']);
-
-Route::get('/verror', [AuthorController::class, 'verror']);
-
-Route::prefix('book')->group(function () {
-    Route::get('/', [BookController::class, 'index']);
-    Route::get('/add', [BookController::class, 'add']);
-    Route::post('/add', [BookController::class, 'create']);
+// 管理者ログイン
+Route::prefix('admin')->group(function () {
+    Route::get('/login', [AdminUserAuthController::class, 'loginPageShow'])->name('admin.login');
+    // Route::post('/login', [AdminUserAuthController::class, 'loginProcess'])->name('admin.login.post');
 });
 
-Route::get('/relation', [AuthorController::class, 'relate']);
+// 一般ユーザーログイン
+Route::prefix('user')->group(function () {
+    Route::get('/login', [GeneralUserAuthController::class, 'loginPageShow'])->name('user.login');
+    // Route::post('/login', [GeneralUserAuthController::class, 'loginProcess'])->name('user.login.post');
+    Route::get('/register', [GeneralUserAuthController::class, 'registerPageShow'])->name('user.register');
+    // Route::post('/register', [GeneralUserAuthController::class, 'registerProcess'])->name('user.register.post');
+});
 
-Route::get('/session', [SessionController::class, 'getSes']);
-Route::post('/session', [SessionController::class, 'postSes']);
+// Route::get('/', [AuthorController::class, 'index']);
+// Route::get('/add', [AuthorController::class, 'add']);
+// Route::post('/add', [AuthorController::class, 'create']);
+// Route::get('/edit', [AuthorController::class, 'edit']);
+// Route::post('/edit', [AuthorController::class, 'update']);
+// Route::get('/delete', [AuthorController::class, 'delete']);
+// Route::post('/delete', [AuthorController::class, 'remove']);
+
+// Route::get('/find', [AuthorController::class, 'find']);
+// Route::post('/find', [AuthorController::class, 'search']);
+
+// Route::get('/author/{author}', [AuthorController::class, 'bind']);
+
+// Route::get('/verror', [AuthorController::class, 'verror']);
+
+// Route::prefix('book')->group(function () {
+//     Route::get('/', [BookController::class, 'index']);
+//     Route::get('/add', [BookController::class, 'add']);
+//     Route::post('/add', [BookController::class, 'create']);
+// });
+
+// Route::get('/relation', [AuthorController::class, 'relate']);
+
+// Route::get('/session', [SessionController::class, 'getSes']);
+// Route::post('/session', [SessionController::class, 'postSes']);
