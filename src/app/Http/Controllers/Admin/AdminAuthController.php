@@ -7,8 +7,26 @@ use Illuminate\Http\Request;
 
 class AdminAuthController extends Controller
 {
+    // 管理者用ログイン画面表示
     public function loginPageShow()
     {
-        return view('admin.auth.login'); // 管理者用ログイン画面
+        return view('admin.login'); 
+    }
+
+    // 管理者用ログイン処理
+    public function loginProcess(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        // 認証処理
+        if (auth()->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/admin/attendances'); // ログイン成功後のリダイレクト先
+        }
+
+        // 認証失敗時の処理
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 }

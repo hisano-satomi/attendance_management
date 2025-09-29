@@ -1,12 +1,12 @@
 <?php
 
-// use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\AuthorController;
 // use App\Http\Controllers\BookController;
 // use App\Http\Controllers\SessionController;
 
 // 管理者用
-use App\Http\Controllers\Admin\UserAuthController as AdminUserAuthController;
+use App\Http\Controllers\Admin\AdminAuthController as AdminUserAuthController;
 
 
 // 一般ユーザー用
@@ -27,15 +27,12 @@ use App\Http\Controllers\User\UserAuthController as GeneralUserAuthController;
 // 管理者ログイン
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminUserAuthController::class, 'loginPageShow'])->name('admin.login');
-    // Route::post('/login', [AdminUserAuthController::class, 'loginProcess'])->name('admin.login.post');
+    Route::post('/login', [AdminUserAuthController::class, 'loginProcess'])->name('admin.login.post');
 });
 
 // 一般ユーザーログイン
 Route::prefix('user')->group(function () {
-    Route::get('/login', [GeneralUserAuthController::class, 'loginPageShow'])->name('user.login');
-    // Route::post('/login', [GeneralUserAuthController::class, 'loginProcess'])->name('user.login.post');
-    Route::get('/register', [GeneralUserAuthController::class, 'registerPageShow'])->name('user.register');
-    // Route::post('/register', [GeneralUserAuthController::class, 'registerProcess'])->name('user.register.post');
+    
 });
 
 // Route::get('/', [AuthorController::class, 'index']);
