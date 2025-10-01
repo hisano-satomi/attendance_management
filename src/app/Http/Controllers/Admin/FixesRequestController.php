@@ -7,5 +7,9 @@ use Illuminate\Http\Request;
 
 class FixesRequestController extends Controller
 {
-    //
+    // 申請一覧画面表示
+    public function fixesRequestListShow()
+    {
+        return view('admin.auth.fixes_request');
+    }
 }

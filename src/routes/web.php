@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 // 管理者用
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\TimesheetController;
+use App\Http\Controllers\Admin\FixesRequestController;
 
 
 // 一般ユーザー用
@@ -31,6 +32,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', [AdminAuthController::class, 'loginProcess'])->name('admin.login.post');
     Route::get('/attendances', [TimesheetController::class, 'attendanceListShow'])->name('admin.attendance.list');
     Route::get('/attendances/id', [TimesheetController::class, 'attendanceDetailShow'])->name('admin.attendance.detail');
+    Route::get('/requests', [FixesRequestController::class, 'fixesRequestListShow'])->name('admin.requests.list');
 });
 
 // 一般ユーザーログイン
