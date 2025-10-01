@@ -13,7 +13,7 @@
     <header>
         <div class="header-container">
             <h1 class="header-logo">
-                <a href="/"><img src="{{ asset('images/logo.png') }}" alt=""></a>
+                <a href="/"><img src="{{ asset('images/logo.svg') }}" alt=""></a>
             </h1>
         </div>
     </header>
