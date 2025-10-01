@@ -6,11 +6,12 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\SessionController;
 
 // 管理者用
-use App\Http\Controllers\Admin\AdminAuthController as AdminUserAuthController;
+use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\TimesheetController;
 
 
 // 一般ユーザー用
-use App\Http\Controllers\User\UserAuthController as GeneralUserAuthController;
+
 
 
 /*
@@ -26,8 +27,10 @@ use App\Http\Controllers\User\UserAuthController as GeneralUserAuthController;
 
 // 管理者ログイン
 Route::prefix('admin')->group(function () {
-    Route::get('/login', [AdminUserAuthController::class, 'loginPageShow'])->name('admin.login');
-    Route::post('/login', [AdminUserAuthController::class, 'loginProcess'])->name('admin.login.post');
+    Route::get('/login', [AdminAuthController::class, 'loginPageShow'])->name('admin.login');
+    Route::post('/login', [AdminAuthController::class, 'loginProcess'])->name('admin.login.post');
+    Route::get('/attendances', [TimesheetController::class, 'attendanceListShow'])->name('admin.attendance.list');
+    Route::get('/attendances/id', [TimesheetController::class, 'attendanceDetailShow'])->name('admin.attendance.detail');
 });
 
 // 一般ユーザーログイン
