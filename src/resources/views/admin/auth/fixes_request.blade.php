@@ -10,7 +10,7 @@
         </div>
 
         <div class="tab-content active" id="pending">
-            <!-- 承認待ちの内容をここに記述 -->
+            <!-- 承認待ちの勤怠をここに記述 -->
             <table class="tab-content__table">
                 <tr class="tab-content__header">
                     <th>状態</th>
@@ -31,7 +31,7 @@
             </table>
         </div>
         <div class="tab-content" id="approved">
-            <!-- 承認済みの内容をここに記述 -->
+            <!-- 承認済みの勤怠をここに記述 -->
         </div>
     </div>
 @endsection
