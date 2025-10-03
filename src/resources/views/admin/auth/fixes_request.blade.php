@@ -11,8 +11,8 @@
 
         <div class="tab-content active" id="pending">
             <!-- 承認待ちの勤怠をここに記述 -->
-            <table class="tab-content__table">
-                <tr class="tab-content__header">
+            <table class="tab-content-table">
+                <tr class="tab-content-table__header">
                     <th>状態</th>
                     <th>名前</th>
                     <th>対象日付</th>
@@ -20,7 +20,7 @@
                     <th>申請日時</th>
                     <th>詳細</th>
                 </tr>
-                <tr class="tab-content__data">
+                <tr class="tab-content-table__data">
                     <td>承認待ち</td>
                     <td>山田 太郎</td>
                     <td>2023/06/01</td>

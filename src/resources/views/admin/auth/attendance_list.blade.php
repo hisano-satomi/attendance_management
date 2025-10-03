@@ -4,8 +4,10 @@
     <div class="container">
         <h2 class="content-title">2023年6月1日の勤怠</h2>
 
-        <table class="attendance-list__table">
-            <tr class="attendance-list__header">
+        <!-- ページネーションを作成する -->
+
+        <table class="attendance-list-table">
+            <tr class="attendance-list-table__header">
                 <th>名前</th>
                 <th>出勤</th>
                 <th>退勤</th>
@@ -13,7 +15,7 @@
                 <th>合計</th>
                 <th>詳細</th>
             </tr>
-            <tr class="attendance-list__data">
+            <tr class="attendance-list-table__data">
                 <td>山田 太郎</td>
                 <td>09:00</td>
                 <td>18:00</td>

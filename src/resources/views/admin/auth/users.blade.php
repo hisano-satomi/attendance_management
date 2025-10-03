@@ -9,8 +9,7 @@
             <th>メールアドレス</th>
             <th>月次勤怠</th>
         </tr>
-        <tr class="content-table__data">
-            <td>1</td>
+        <tr class="users-table__data">
             <td>山田 太郎</td>
             <td>yamada@example.com</td>
             <td>詳細</td>

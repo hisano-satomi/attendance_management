@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\TimesheetController;
 use App\Http\Controllers\Admin\FixesRequestController;
-
+use App\Http\Controllers\Admin\UsersAttendanceController;
+use App\Http\Controllers\Admin\ApprovalController;
 
 // 一般ユーザー用
 
@@ -33,6 +34,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/attendances', [TimesheetController::class, 'attendanceListShow'])->name('admin.attendance.list');
     Route::get('/attendances/id', [TimesheetController::class, 'attendanceDetailShow'])->name('admin.attendance.detail');
     Route::get('/requests', [FixesRequestController::class, 'fixesRequestListShow'])->name('admin.requests.list');
+    Route::get('/users', [UsersAttendanceController::class, 'usersListShow'])->name('admin.users.list');
+    Route::get('/users/id/attendances', [UsersAttendanceController::class, 'usersAttendanceShow'])->name('admin.users.attendance');
+    Route::get('/requests/id', [ApprovalController::class, 'approvalPageShow'])->name('admin.approval.page');
 });
 
 // 一般ユーザーログイン
