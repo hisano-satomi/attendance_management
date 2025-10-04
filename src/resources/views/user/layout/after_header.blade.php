@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>coachtech 勤怠管理アプリ</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/common/after_header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/user/common/after_header.css') }}">
     @yield('css')
 </head>
 
