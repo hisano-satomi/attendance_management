@@ -43,6 +43,7 @@ Route::prefix('admin')->group(function () {
 Route::prefix('user')->group(function () {
     Route::get('/attendance', [AttendanceController::class, 'attendancePageShow'])->name('user.attendance');
     Route::get('/attendance/list', [AttendanceController::class, 'attendanceListShow'])->name('user.attendance.list');
+    Route::get('/attendance/detail/id', [AttendanceController::class, 'attendanceDetailShow'])->name('user.attendance.detail');
 });
 
 // Route::get('/', [AuthorController::class, 'index']);
