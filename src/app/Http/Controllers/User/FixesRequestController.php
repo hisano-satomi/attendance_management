@@ -10,6 +10,6 @@ class FixesRequestController extends Controller
     // 修正申請一覧画面表示
     public function fixesRequestListShow()
     {
-        return view('user.auth.fixes_request_list');
+        return view('user.auth.fixes_request');
     }
 }
