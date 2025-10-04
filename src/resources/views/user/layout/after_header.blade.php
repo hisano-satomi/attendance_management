@@ -15,6 +15,13 @@
             <h1 class="header-logo">
                 <a href="/"><img src="{{ asset('images/logo.svg') }}" alt=""></a>
             </h1>
+
+            <ul class="header-nav">
+                <li class="header-nav__item"><a href=""></a>勤怠</li>
+                <li class="header-nav__item"><a href=""></a>勤怠一覧</li>
+                <li class="header-nav__item"><a href=""></a>申請</li>
+                <li class="header-nav__item"><a href=""></a>ログアウト</li>
+            </ul>
         </div>
     </header>
 
