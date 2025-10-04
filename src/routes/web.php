@@ -42,6 +42,7 @@ Route::prefix('admin')->group(function () {
 // 一般ユーザーでログイン
 Route::prefix('user')->group(function () {
     Route::get('/attendance', [AttendanceController::class, 'attendancePageShow'])->name('user.attendance');
+    Route::get('/attendance/list', [AttendanceController::class, 'attendanceListShow'])->name('user.attendance.list');
 });
 
 // Route::get('/', [AuthorController::class, 'index']);

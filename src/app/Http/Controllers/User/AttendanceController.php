@@ -12,4 +12,10 @@ class AttendanceController extends Controller
     {
         return view('user.auth.attendance');
     }
+
+    // 一般ユーザー用勤怠一覧画面表示
+    public function attendanceListShow()
+    {
+        return view('user.auth.attendance_list');
+    }
 }
