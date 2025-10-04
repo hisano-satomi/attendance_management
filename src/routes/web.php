@@ -13,7 +13,7 @@ use App\Http\Controllers\Admin\UsersAttendanceController;
 use App\Http\Controllers\Admin\ApprovalController;
 
 // 一般ユーザー用
-
+use App\Http\Controllers\User\AttendanceController;
 
 
 /*
@@ -27,7 +27,7 @@ use App\Http\Controllers\Admin\ApprovalController;
 |
 */
 
-// 管理者ログイン
+// 管理者でログイン
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'loginPageShow'])->name('admin.login');
     Route::post('/login', [AdminAuthController::class, 'loginProcess'])->name('admin.login.post');
@@ -39,9 +39,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/requests/id', [ApprovalController::class, 'approvalPageShow'])->name('admin.approval.page');
 });
 
-// 一般ユーザーログイン
+// 一般ユーザーでログイン
 Route::prefix('user')->group(function () {
-    
+    Route::get('/attendance', [AttendanceController::class, 'attendancePageShow'])->name('user.attendance');
 });
 
 // Route::get('/', [AuthorController::class, 'index']);
