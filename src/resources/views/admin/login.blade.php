@@ -1,5 +1,9 @@
 @extends('admin.layout.before_header')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/admin/login.css') }}">
+@endsection
+
 @section('content')
     <div class="content">
         <h2 class="content-title">管理者ログイン</h2>

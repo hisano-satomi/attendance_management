@@ -1,5 +1,9 @@
 @extends('user.layout.before_header')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/user/login.css') }}">
+@endsection
+
 @section('content')
     <div class="content">
         <h2 class="content-title">ログイン</h2>
