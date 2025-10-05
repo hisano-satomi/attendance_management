@@ -17,10 +17,10 @@
             </h1>
 
             <ul class="header-nav">
-                <li class="header-nav__item"><a href=""></a>勤怠一覧</li>
-                <li class="header-nav__item"><a href=""></a>スタッフ一覧</li>
-                <li class="header-nav__item"><a href=""></a>申請一覧</li>
-                <li class="header-nav__item"><a href=""></a>ログアウト</li>
+                <li class="header-nav__item"><a href="">勤怠一覧</a></li>
+                <li class="header-nav__item"><a href="">スタッフ一覧</a></li>
+                <li class="header-nav__item"><a href="">申請一覧</a></li>
+                <li class="header-nav__item"><a href="">ログアウト</a></li>
             </ul>
         </div>
     </header>

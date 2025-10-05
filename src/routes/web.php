@@ -41,12 +41,10 @@ Route::prefix('admin')->group(function () {
 });
 
 // 一般ユーザーでログイン
-Route::prefix('user')->group(function () {
-    Route::get('/attendance', [AttendanceController::class, 'attendancePageShow'])->name('user.attendance');
-    Route::get('/attendance/list', [AttendanceController::class, 'attendanceListShow'])->name('user.attendance.list');
-    Route::get('/attendance/detail/id', [AttendanceController::class, 'attendanceDetailShow'])->name('user.attendance.detail');
-    Route::get('/stamp_correction_request/list', [UserFixesRequestController::class, 'fixesRequestListShow'])->name('user.requests.list');
-});
+Route::get('/attendance', [AttendanceController::class, 'attendancePageShow'])->name('user.attendance');
+Route::get('/attendance/list', [AttendanceController::class, 'attendanceListShow'])->name('user.attendance.list');
+Route::get('/attendance/detail/id', [AttendanceController::class, 'attendanceDetailShow'])->name('user.attendance.detail');
+Route::get('/stamp_correction_request/list', [UserFixesRequestController::class, 'fixesRequestListShow'])->name('user.requests.list');
 
 // Route::get('/', [AuthorController::class, 'index']);
 // Route::get('/add', [AuthorController::class, 'add']);
