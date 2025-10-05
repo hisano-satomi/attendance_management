@@ -1,0 +1,9 @@
+.header-container {
+    background-color: #1a0808;
+    height: 80px;
+    line-height: 80px;
+}
+
+.header-logo {
+    margin: 0;
+}
