@@ -1,5 +1,9 @@
 @extends('user.layout.after_header')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/user/attendance.css') }}">
+@endsection
+
 @section('content')
     <div class="container">
         <div class="attendance-status">勤務外</div>
