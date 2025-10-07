@@ -19,9 +19,8 @@
                 </button>
                 
                 <div class="current-month">
-                    <input type="date" name="selected_date" value="">
-                    <span class="current-month__year">2023年</span>
-                    <span class="current-month__month">6月</span>
+                    <span class="calendar-icon">📅</span>
+                    <span class="current-month__date">2023/06/01</span>
                 </div>
                 
                 <button class="nav-button nav-button--next" type="button">

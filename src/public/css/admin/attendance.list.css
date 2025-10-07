@@ -1,0 +1,166 @@
+/* 管理者用勤怠一覧画面のスタイル */
+body {
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+.content-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 30px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.content-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 24px;
+    background-color: #000000;
+}
+
+/* 日付ナビゲーション */
+.date-navigation {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date-navigation__controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #000000;
+}
+
+.nav-button svg {
+    color: #000000;
+}
+
+.nav-button--prev::before {
+    content: "← 前日";
+    margin-right: 5px;
+}
+
+.nav-button--next::after {
+    content: "翌日 →";
+    margin-left: 5px;
+}
+
+.current-month {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.calendar-icon {
+    font-size: 16px;
+}
+
+.current-month__date {
+    font-size: 16px;
+}
+
+/* 勤怠テーブル */
+.attendance-list-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-list-table__header {
+    background-color: #fff;
+}
+
+.attendance-list-table__header th {
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: bold;
+    color: #000000;
+    border-bottom: 2px solid #e9ecef;
+    font-size: 14px;
+}
+
+.attendance-list-table__data td {
+    padding: 12px;
+    color: #000000;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 14px;
+}
+
+.attendance-list-table__data:last-child td {
+    border-bottom: none;
+}
+
+.attendance-list-table__data:hover {
+    background-color: #f8f9fa;
+}
+
+.attendance-list-table__data a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.attendance-list-table__data a:hover {
+    text-decoration: underline;
+}
+
+/* テーブルの列幅調整 - 管理者用 */
+.attendance-list-table th:nth-child(1),
+.attendance-list-table td:nth-child(1) {
+    width: 20%;
+}
+
+.attendance-list-table th:nth-child(2),
+.attendance-list-table td:nth-child(2),
+.attendance-list-table th:nth-child(3),
+.attendance-list-table td:nth-child(3),
+.attendance-list-table th:nth-child(4),
+.attendance-list-table td:nth-child(4),
+.attendance-list-table th:nth-child(5),
+.attendance-list-table td:nth-child(5) {
+    width: 15%;
+    text-align: center;
+}
+
+.attendance-list-table th:nth-child(6),
+.attendance-list-table td:nth-child(6) {
+    width: 10%;
+    text-align: center;
+}

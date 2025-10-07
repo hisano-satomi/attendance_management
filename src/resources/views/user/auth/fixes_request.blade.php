@@ -1,5 +1,9 @@
 @extends('user.layout.after_header')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/user/fixes_request.css') }}">
+@endsection
+
 @section('content')
     <div class="container">
         <h2 class="content-title">申請一覧</h2>
@@ -27,7 +31,7 @@
                         <td>2023/06/01</td>
                         <td>遅延のため</td>
                         <td>2023/06/02</td>
-                        <td><a href="#">詳細を見る</a></td>
+                        <td><a href="#">詳細</a></td>
                     </tr>
                 </table>
             </div>
