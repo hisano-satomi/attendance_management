@@ -1,0 +1,99 @@
+/* 管理者用スタッフ一覧画面のスタイル */
+body {
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+.content-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 30px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.content-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 24px;
+    background-color: #000000;
+}
+
+/* スタッフ一覧テーブル */
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.users-table__header {
+    background-color: #fff;
+}
+
+.users-table__header th {
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: bold;
+    color: #000000;
+    border-bottom: 2px solid #e9ecef;
+    font-size: 14px;
+}
+
+.users-table__data td {
+    padding: 12px;
+    color: #000000;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 14px;
+}
+
+.users-table__data:last-child td {
+    border-bottom: none;
+}
+
+.users-table__data:hover {
+    background-color: #f8f9fa;
+}
+
+.users-table__data a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.users-table__data a:hover {
+    text-decoration: underline;
+}
+
+/* テーブルの列幅調整 */
+.users-table th:nth-child(1),
+.users-table td:nth-child(1) {
+    width: 25%;
+}
+
+.users-table th:nth-child(2),
+.users-table td:nth-child(2) {
+    width: 50%;
+}
+
+.users-table th:nth-child(3),
+.users-table td:nth-child(3) {
+    width: 25%;
+    text-align: center;
+}

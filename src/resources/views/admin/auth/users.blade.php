@@ -1,5 +1,9 @@
 @extends('admin.layout.after_header')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/admin/users.css') }}">
+@endsection
+
 @section('content')
     <div class="container">
         <h2 class="content-title">スタッフ一覧</h2>    
@@ -13,7 +17,7 @@
             <tr class="users-table__data">
                 <td>山田 太郎</td>
                 <td>yamada@example.com</td>
-                <td>詳細</td>
+                <td><a href="#">詳細</a></td>
             </tr>
         </table>
     </div>
