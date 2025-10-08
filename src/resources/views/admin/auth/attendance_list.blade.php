@@ -1,7 +1,7 @@
 @extends('admin.layout.after_header')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/admin/attendance.list.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/attendance_list.css') }}">
 @endsection
 
 @section('content')

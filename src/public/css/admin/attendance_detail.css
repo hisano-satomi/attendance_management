@@ -1,0 +1,156 @@
+/* 管理者用勤怠詳細画面のスタイル */
+body {
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+.content-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 30px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.content-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 24px;
+    background-color: #000000;
+}
+
+/* 勤怠詳細テーブル */
+.attendance-detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.attendance-detail-table__row {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.attendance-detail-table__row:last-child {
+    border-bottom: none;
+}
+
+.attendance-detail-table th {
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: normal;
+    color: #000000;
+    font-size: 16px;
+    width: 120px;
+    vertical-align: top;
+    background-color: #ffffff;
+}
+
+.attendance-detail-table td {
+    padding: 20px 15px;
+    color: #000000;
+    font-size: 16px;
+    vertical-align: top;
+    background-color: #ffffff;
+}
+
+/* 日付の表示 */
+.attendance-detail-table__year {
+    font-size: 16px;
+    color: #000000;
+}
+
+.attendance-detail-table__date {
+    font-size: 16px;
+    color: #000000;
+}
+
+/* 時間入力フィールド */
+.attendance-detail-table input[type="time"] {
+    width: 120px;
+    height: 40px;
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #ffffff;
+    font-size: 16px;
+    color: #000000;
+    margin: 0 5px;
+}
+
+.attendance-detail-table input[type="time"]:focus {
+    outline: none;
+    border-color: #000000;
+}
+
+/* チルダ（～）のスタイル */
+.attendance-detail-table td {
+    font-size: 16px;
+    color: #000000;
+}
+
+/* 備考テキストエリア */
+.attendance-detail__remarks {
+    width: 100%;
+    min-height: 100px;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #ffffff;
+    font-size: 16px;
+    color: #000000;
+    font-family: inherit;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.attendance-detail__remarks:focus {
+    outline: none;
+    border-color: #000000;
+}
+
+/* 修正ボタン */
+.attendance-detail-table__button {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #333333;
+}
+
+.btn-primary:active {
+    background-color: #555555;
+}

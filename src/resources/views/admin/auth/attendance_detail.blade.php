@@ -1,5 +1,9 @@
 @extends('admin.layout.after_header')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/admin/attendance_detail.css') }}">
+@endsection
+
 @section('content')
     <div class="container">
         <h2 class="content-title">勤怠詳細</h2>
