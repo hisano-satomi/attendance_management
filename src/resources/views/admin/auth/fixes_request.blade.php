@@ -1,5 +1,9 @@
 @extends('admin.layout.after_header')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/admin/fixes_request.css') }}">
+@endsection
+
 @section('content')
     <div class="container">
         <h2 class="content-title">申請一覧</h2>
@@ -16,7 +20,7 @@
                     <tr class="tab-content-table__header">
                         <th>状態</th>
                         <th>名前</th>
-                        <th>対象日付</th>
+                        <th>対象日時</th>
                         <th>申請理由</th>
                         <th>申請日時</th>
                         <th>詳細</th>
@@ -27,7 +31,7 @@
                         <td>2023/06/01</td>
                         <td>遅延のため</td>
                         <td>2023/06/02</td>
-                        <td><a href="#">詳細を見る</a></td>
+                        <td><a href="#">詳細</a></td>
                     </tr>
                 </table>
             </div>

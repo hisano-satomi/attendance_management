@@ -1,0 +1,161 @@
+/* 管理者用申請一覧画面のスタイル */
+body {
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+.content-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 30px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.content-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 24px;
+    background-color: #000000;
+}
+
+/* タブナビゲーション */
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 0;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #666666;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.tab-button.active {
+    color: #000000;
+}
+
+/* .tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #000000;
+} */
+
+.tab-button:hover {
+    color: #000000;
+}
+
+/* タブコンテンツ */
+.tab-content {
+    display: none;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* 申請一覧テーブル */
+.tab-content-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+}
+
+.tab-content-table__header {
+    background-color: #fff;
+}
+
+.tab-content-table__header th {
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: bold;
+    color: #000000;
+    border-bottom: 2px solid #e9ecef;
+    font-size: 14px;
+}
+
+.tab-content-table__data td {
+    padding: 12px;
+    color: #000000;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 14px;
+}
+
+.tab-content-table__data:last-child td {
+    border-bottom: none;
+}
+
+.tab-content-table__data:hover {
+    background-color: #f8f9fa;
+}
+
+.tab-content-table__data a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.tab-content-table__data a:hover {
+    text-decoration: underline;
+}
+
+/* テーブルの列幅調整 */
+.tab-content-table th:nth-child(1),
+.tab-content-table td:nth-child(1) {
+    width: 15%;
+}
+
+.tab-content-table th:nth-child(2),
+.tab-content-table td:nth-child(2) {
+    width: 15%;
+}
+
+.tab-content-table th:nth-child(3),
+.tab-content-table td:nth-child(3) {
+    width: 15%;
+}
+
+.tab-content-table th:nth-child(4),
+.tab-content-table td:nth-child(4) {
+    width: 20%;
+}
+
+.tab-content-table th:nth-child(5),
+.tab-content-table td:nth-child(5) {
+    width: 15%;
+}
+
+.tab-content-table th:nth-child(6),
+.tab-content-table td:nth-child(6) {
+    width: 10%;
+    text-align: center;
+}
