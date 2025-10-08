@@ -1,5 +1,9 @@
 @extends('admin.layout.after_header')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/admin/approval.css') }}">
+@endsection
+
 @section('content')
     <div class="container">
         <h2 class="content-title">勤怠詳細</h2>
@@ -45,7 +49,8 @@
 
             <!-- 承認済みの分岐をあとから実装 -->
             <div class="attendance-detail-table__button">
-                <button type="submit" class="btn btn-primary">承認</button>
+                <button type="submit" class="btn btn-approval">承認</button>
+                <button type="submit" class="btn btn-approved">承認済み</button>
             </div>
         </form>
     </div>
