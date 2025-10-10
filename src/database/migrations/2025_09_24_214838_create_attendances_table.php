@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFixesBreakRequestTable extends Migration
+class CreateAttendancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateFixesBreakRequestTable extends Migration
      */
     public function up()
     {
-        Schema::create('fixes_break_request', function (Blueprint $table) {
+        Schema::create('attendances', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('fixes_attendance_request_id')->constrained('fixes_attendance_request');
-            $table->timestamp('break_start')->nullable();
-            $table->timestamp('break_stop')->nullable();
+            $table->foreignId('user_id')->constrained('users');
+            $table->timestamp('work_start')->nullable();
+            $table->timestamp('work_stop')->nullable();
+            $table->date('date');
+            $table->enum('status', ['working', 'breaking', 'done']);
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateFixesBreakRequestTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fixes_break_request');
+        Schema::dropIfExists('attendances');
     }
 }

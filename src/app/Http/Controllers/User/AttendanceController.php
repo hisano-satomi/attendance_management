@@ -7,10 +7,34 @@ use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
 {
-    // 一般ユーザー用勤怠登録画面表示
+    // 勤怠登録画面表示
     public function attendancePageShow()
     {
         return view('user.auth.attendance');
+    }
+
+    // 勤怠登録機能-出勤処理
+    public function workStart()
+    {
+        
+    }
+
+    // 勤怠登録機能-退勤処理
+    public function workStop()
+    {
+        
+    }
+
+    // 勤怠登録機能-休憩入処理
+    public function breakStart()
+    {
+        
+    }
+
+    // 勤怠登録機能-休憩戻処理
+    public function breakStop()
+    {
+        
     }
 
     // 一般ユーザー用勤怠一覧画面表示

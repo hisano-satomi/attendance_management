@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAttendanceTable extends Migration
+class CreateBreakTimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateAttendanceTable extends Migration
      */
     public function up()
     {
-        Schema::create('attendance', function (Blueprint $table) {
+        Schema::create('break_times', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('user_id')->constrained('users');
-            $table->timestamp('work_start')->nullable();
-            $table->timestamp('work_stop')->nullable();
-            $table->date('date');
-            $table->enum('status', ['working', 'breaking', 'done']);
+            $table->foreignId('attendance_id')->constrained('attendance');
+            $table->timestamp('break_start')->nullable();
+            $table->timestamp('break_stop')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateAttendanceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attendance');
+        Schema::dropIfExists('break_times');
     }
 }
