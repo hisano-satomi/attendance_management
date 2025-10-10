@@ -46,7 +46,10 @@ Route::get('/attendance/list', [AttendanceController::class, 'attendanceListShow
 Route::get('/attendance/detail/id', [AttendanceController::class, 'attendanceDetailShow'])->name('user.attendance.detail');
 Route::get('/stamp_correction_request/list', [UserFixesRequestController::class, 'fixesRequestListShow'])->name('user.requests.list');
 
-// Route::get('/', [AuthorController::class, 'index']);
+// ルートページ - 管理者ログインページにリダイレクト
+Route::get('/', function () {
+    return redirect()->route('admin.login');
+});
 // Route::get('/add', [AuthorController::class, 'add']);
 // Route::post('/add', [AuthorController::class, 'create']);
 // Route::get('/edit', [AuthorController::class, 'edit']);
