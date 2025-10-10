@@ -15,7 +15,7 @@ class CreateFixesAttendanceRequestsTable extends Migration
     {
         Schema::create('fixes_attendance_requests', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('attendance_id')->constrained('attendance');
+            $table->foreignId('attendance_id')->constrained('attendances');
             $table->timestamp('work_start')->nullable();
             $table->timestamp('work_stop')->nullable();
             $table->string('request_reason');

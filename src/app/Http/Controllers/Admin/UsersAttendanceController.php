@@ -4,6 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Users;
+use App\Models\Attendance;
+use App\Models\BreakTime;
 
 class UsersAttendanceController extends Controller
 {
