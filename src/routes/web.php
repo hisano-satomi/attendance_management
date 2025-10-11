@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 // use App\Http\Controllers\AuthorController;
 // use App\Http\Controllers\BookController;
 // use App\Http\Controllers\SessionController;
@@ -40,15 +42,22 @@ Route::prefix('admin')->group(function () {
     Route::get('/requests/id', [ApprovalController::class, 'approvalPageShow'])->name('admin.approval.page');
 });
 
-// 一般ユーザーでログイン
-Route::get('/attendance', [AttendanceController::class, 'attendancePageShow'])->name('user.attendance');
-Route::post('/attendance/work_start', [AttendanceController::class, 'workStart'])->name('user.attendance.work_start');
-Route::post('/attendance/work_stop', [AttendanceController::class, 'workStop'])->name('user.attendance.work_stop');
-Route::post('/attendance/break_start', [AttendanceController::class, 'breakStart'])->name('user.attendance.break_start');
-Route::post('/attendance/break_stop', [AttendanceController::class, 'breakStop'])->name('user.attendance.break_stop');
-Route::get('/attendance/list', [AttendanceController::class, 'attendanceListShow'])->name('user.attendance.list');
-Route::get('/attendance/detail/id', [AttendanceController::class, 'attendanceDetailShow'])->name('user.attendance.detail');
-Route::get('/stamp_correction_request/list', [UserFixesRequestController::class, 'fixesRequestListShow'])->name('user.requests.list');
+// 一般ユーザーでログイン（認証が必要）
+Route::middleware('auth')->group(function () {
+    Route::get('/attendance', [AttendanceController::class, 'attendancePageShow'])->name('user.attendance');
+    Route::post('/attendance/work_start', [AttendanceController::class, 'workStart'])->name('user.attendance.work_start');
+    Route::post('/attendance/work_stop', [AttendanceController::class, 'workStop'])->name('user.attendance.work_stop');
+    Route::post('/attendance/break_start', [AttendanceController::class, 'breakStart'])->name('user.attendance.break_start');
+    Route::post('/attendance/break_stop', [AttendanceController::class, 'breakStop'])->name('user.attendance.break_stop');
+    Route::get('/attendance/list', [AttendanceController::class, 'attendanceListShow'])->name('user.attendance.list');
+    Route::get('/attendance/detail/id', [AttendanceController::class, 'attendanceDetailShow'])->name('user.attendance.detail');
+    Route::get('/stamp_correction_request/list', [UserFixesRequestController::class, 'fixesRequestListShow'])->name('user.requests.list');
+});
+
+// ログアウト（Fortify）
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->middleware('web')
+    ->name('logout');
 
 // ルートページ - 管理者ログインページにリダイレクト
 Route::get('/', function () {

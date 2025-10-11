@@ -17,10 +17,15 @@
             </h1>
 
             <ul class="header-nav">
-                <li class="header-nav__item"><a href="">勤怠</a></li>
-                <li class="header-nav__item"><a href="">勤怠一覧</a></li>
-                <li class="header-nav__item"><a href="">申請</a></li>
-                <li class="header-nav__item"><a href="">ログアウト</a></li>
+                <li class="header-nav__item"><a href="{{ route('user.attendance') }}">勤怠</a></li>
+                <li class="header-nav__item"><a href="{{ route('user.attendance.list') }}">勤怠一覧</a></li>
+                <li class="header-nav__item"><a href="{{ route('user.requests.list') }}">申請</a></li>
+                <li class="header-nav__item">
+                    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                        @csrf
+                        <button type="submit">ログアウト</button>
+                    </form>
+                </li>
             </ul>
         </div>
     </header>

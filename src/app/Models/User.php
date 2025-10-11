@@ -43,14 +43,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * パスワードをハッシュ化するミューテーター
-     */
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = Hash::make($value);
-    }
-
-    /**
      * ユーザーの勤怠記録を取得
      */
     public function attendances()
