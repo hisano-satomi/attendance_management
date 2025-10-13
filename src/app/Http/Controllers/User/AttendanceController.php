@@ -171,11 +171,17 @@ class AttendanceController extends Controller
     }
 
     // 一般ユーザー用勤怠詳細画面表示
-    public function attendanceDetailShow()
+    public function attendanceDetailShow($id)
     {
         $userId = Auth::id();
-        $attendance = Attendance::where('user_id', $userId)->where('date', $date)->first();
-        $breakTimes = BreakTime::where('attendance_id', $attendance->id)->get();
+        
+        // IDで勤怠記録を取得し、ログインユーザーのものか確認
+        $attendance = Attendance::where('id', $id)
+            ->where('user_id', $userId)
+            ->with('breakTimes')
+            ->firstOrFail();
+        
+        $breakTimes = $attendance->breakTimes;
         
         return view('user.auth.attendance_detail', compact('attendance', 'breakTimes'));
     }
