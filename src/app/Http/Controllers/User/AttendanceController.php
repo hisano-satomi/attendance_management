@@ -44,25 +44,102 @@ class AttendanceController extends Controller
         ]);
         
         return redirect()->route('user.attendance')
-            ->with('success', '出勤登録が完了しました。');
+            ->with('success',);
     }
 
     // 勤怠登録機能-退勤処理
     public function workStop()
     {
+        $userId = Auth::id();
+        $today = Carbon::today();
         
+        // 今日の出勤記録が存在するかチェック
+        $existingAttendance = Attendance::where('user_id', $userId)
+            ->where('date', $today)
+            ->first();
+        
+        if (!$existingAttendance) {
+            return redirect()->route('user.attendance')
+                ->with('error', '本日は出勤登録されていません。');
+        }
+
+        // 出勤中であれば退勤処理を実行可能（勤怠更新）
+        if ($existingAttendance->status === 'working') {
+            $existingAttendance->update([
+                'work_stop' => Carbon::now(),
+                'status' => 'done'
+            ]);
+        }
+
+        return redirect()->route('user.attendance')
+            ->with('success',);
     }
 
     // 勤怠登録機能-休憩入処理
     public function breakStart()
     {
+        $userId = Auth::id();
+        $today = Carbon::today();
         
+        // 今日の出勤記録が存在するかチェック
+        $existingAttendance = Attendance::where('user_id', $userId)
+            ->where('date', $today)
+            ->first();
+
+        if (!$existingAttendance) {
+            return redirect()->route('user.attendance')
+                ->with('error', '本日は出勤登録されていません。');
+        }
+
+        // 出勤中であれば休憩入処理を実行可能
+        if ($existingAttendance->status === 'working') {
+            // 勤怠ステータスを更新
+            $existingAttendance->update([
+                'status' => 'breaking'
+            ]);
+
+            // 休憩時間レコードを作成
+            BreakTime::create([
+                'attendance_id' => $existingAttendance->id,
+                'break_start' => Carbon::now(),
+            ]);
+        }
+
+        return redirect()->route('user.attendance')
+            ->with('success',);
     }
 
     // 勤怠登録機能-休憩戻処理
     public function breakStop()
     {
+        $userId = Auth::id();
+        $today = Carbon::today();
         
+        // 今日の出勤記録が存在するかチェック
+        $existingAttendance = Attendance::where('user_id', $userId)
+            ->where('date', $today)
+            ->first();
+
+        if (!$existingAttendance) {
+            return redirect()->route('user.attendance')
+                ->with('error', '本日は出勤登録されていません。');
+        }
+
+        // 出勤中であれば休憩戻処理を実行可能
+        if ($existingAttendance->status === 'breaking') {
+            // 勤怠ステータスを更新
+            $existingAttendance->update([
+                'status' => 'working'
+            ]);
+
+            // 休憩時間レコードを更新
+            BreakTime::where('attendance_id', $existingAttendance->id)->update([
+                'break_stop' => Carbon::now(),
+            ]);
+
+            return redirect()->route('user.attendance')
+            ->with('success',);
+        }
     }
 
     // 一般ユーザー用勤怠一覧画面表示

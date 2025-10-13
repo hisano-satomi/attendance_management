@@ -59,9 +59,9 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('web')
     ->name('logout');
 
-// ルートページ - 管理者ログインページにリダイレクト
+// ルートページ - 一般ユーザーログインページにリダイレクト
 Route::get('/', function () {
-    return redirect()->route('admin.login');
+    return redirect('/login');
 });
 // Route::get('/add', [AuthorController::class, 'add']);
 // Route::post('/add', [AuthorController::class, 'create']);
