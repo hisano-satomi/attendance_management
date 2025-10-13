@@ -143,14 +143,40 @@ class AttendanceController extends Controller
     }
 
     // 一般ユーザー用勤怠一覧画面表示
-    public function attendanceListShow()
+    public function attendanceListShow(Request $request)
     {
-        return view('user.auth.attendance_list');
+        $userId = Auth::id();
+        
+        // リクエストから年月を取得（デフォルトは今月）
+        $year = $request->input('year', Carbon::now()->year);
+        $month = $request->input('month', Carbon::now()->month);
+        
+        // 指定された年月の最初と最後の日を取得
+        $startDate = Carbon::create($year, $month, 1)->startOfDay();
+        $endDate = Carbon::create($year, $month, 1)->endOfMonth()->endOfDay();
+        
+        // 前月と次月の情報を計算
+        $prevMonth = Carbon::create($year, $month, 1)->subMonth();
+        $nextMonth = Carbon::create($year, $month, 1)->addMonth();
+        $currentMonth = Carbon::create($year, $month, 1);
+        
+        // リレーションを使ってbreakTimesも一緒に取得（指定月のみ）
+        $attendances = Attendance::where('user_id', $userId)
+            ->whereBetween('date', [$startDate, $endDate])
+            ->with('breakTimes')
+            ->orderBy('date', 'desc')
+            ->get();
+        
+        return view('user.auth.attendance_list', compact('attendances', 'currentMonth', 'prevMonth', 'nextMonth'));
     }
 
     // 一般ユーザー用勤怠詳細画面表示
     public function attendanceDetailShow()
     {
-        return view('user.auth.attendance_detail');
+        $userId = Auth::id();
+        $attendance = Attendance::where('user_id', $userId)->where('date', $date)->first();
+        $breakTimes = BreakTime::where('attendance_id', $attendance->id)->get();
+        
+        return view('user.auth.attendance_detail', compact('attendance', 'breakTimes'));
     }
 }

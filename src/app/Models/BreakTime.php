@@ -22,6 +22,16 @@ class BreakTime extends Model
     ];
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'break_start' => 'datetime',
+        'break_stop' => 'datetime',
+    ];
+
+    /**
      * 勤怠記録とのリレーション
      */
     public function attendance(): BelongsTo

@@ -78,6 +78,12 @@ body {
     align-items: center;
     font-size: 14px;
     color: #000000;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.nav-button:hover {
+    opacity: 0.7;
 }
 
 .nav-button svg {
