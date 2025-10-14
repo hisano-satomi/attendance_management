@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\Attendance;
 use App\Models\BreakTime;
+use App\Models\FixesAttendanceRequest;
 
 class AttendanceController extends Controller
 {
@@ -183,6 +184,14 @@ class AttendanceController extends Controller
         
         $breakTimes = $attendance->breakTimes;
         
-        return view('user.auth.attendance_detail', compact('attendance', 'breakTimes'));
+        // 修正申請中かどうかを確認し、申請データを取得
+        $pendingRequest = FixesAttendanceRequest::where('attendance_id', $id)
+            ->where('status', 'pending')
+            ->with('fixesBreakRequests')
+            ->first();
+        
+        $hasPendingRequest = $pendingRequest !== null;
+        
+        return view('user.auth.attendance_detail', compact('attendance', 'breakTimes', 'hasPendingRequest', 'pendingRequest'));
     }
 }

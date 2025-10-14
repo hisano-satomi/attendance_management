@@ -50,4 +50,12 @@ class Attendance extends Model
     {
         return $this->hasMany(BreakTime::class);
     }
+
+    /**
+     * 修正申請とのリレーション
+     */
+    public function fixesAttendanceRequest(): HasMany
+    {
+        return $this->hasMany(FixesAttendanceRequest::class);
+    }
 }
