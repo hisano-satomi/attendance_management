@@ -22,6 +22,10 @@ class AdminAuthController extends Controller
         // 認証処理
         if (auth()->attempt($credentials)) {
             $request->session()->regenerate();
+            
+            // 管理者としてログインしたことをセッションに保存
+            $request->session()->put('was_admin', true);
+            
             return redirect()->intended('/admin/attendances'); // ログイン成功後のリダイレクト先
         }
 

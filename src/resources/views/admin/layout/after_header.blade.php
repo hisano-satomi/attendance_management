@@ -20,7 +20,12 @@
                 <li class="header-nav__item"><a href="">勤怠一覧</a></li>
                 <li class="header-nav__item"><a href="">スタッフ一覧</a></li>
                 <li class="header-nav__item"><a href="">申請一覧</a></li>
-                <li class="header-nav__item"><a href="">ログアウト</a></li>
+                <li class="header-nav__item">
+                    <form action="{{ route('logout') }}" method="POST" class="logout-form">
+                        @csrf
+                        <button type="submit" class="logout-button">ログアウト</button>
+                    </form>
+                </li>
             </ul>
         </div>
     </header>

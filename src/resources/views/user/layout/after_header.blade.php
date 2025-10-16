@@ -21,9 +21,9 @@
                 <li class="header-nav__item"><a href="{{ route('user.attendance.list') }}">勤怠一覧</a></li>
                 <li class="header-nav__item"><a href="{{ route('user.requests.list') }}">申請</a></li>
                 <li class="header-nav__item">
-                    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                    <form action="{{ route('logout') }}" method="POST" class="logout-form">
                         @csrf
-                        <button type="submit">ログアウト</button>
+                        <button type="submit" class="logout-button">ログアウト</button>
                     </form>
                 </li>
             </ul>
