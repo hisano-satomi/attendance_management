@@ -15,7 +15,7 @@
             </div>
 
             <div class="tab-content active" id="pending">
-                <!-- 承認待ちの勤怠をここに記述 -->
+                <!-- 承認待ちの勤怠 -->
                 <table class="tab-content-table">
                     <tr class="tab-content-table__header">
                         <th>状態</th>
@@ -25,18 +25,48 @@
                         <th>申請日時</th>
                         <th>詳細</th>
                     </tr>
+                    @forelse($pendingRequests as $request)
                     <tr class="tab-content-table__data">
                         <td>承認待ち</td>
-                        <td>山田 太郎</td>
-                        <td>2023/06/01</td>
-                        <td>遅延のため</td>
-                        <td>2023/06/02</td>
-                        <td><a href="#">詳細</a></td>
+                        <td>{{ $request->attendance->user->name }}</td>
+                        <td>{{ $request->attendance->date->format('Y/m/d') }}</td>
+                        <td>{{ $request->request_reason }}</td>
+                        <td>{{ $request->created_at->format('Y/m/d H:i') }}</td>
+                        <td><a href="{{ route('user.attendance.detail', ['id' => $request->attendance->id]) }}">詳細</a></td>
                     </tr>
+                    @empty
+                    <tr class="tab-content-table__data">
+                        <td colspan="6" style="text-align: center;">承認待ちの申請はありません</td>
+                    </tr>
+                    @endforelse
                 </table>
             </div>
             <div class="tab-content" id="approved">
-                <!-- 承認済みの勤怠をここに記述 -->
+                <!-- 承認済みの勤怠 -->
+                <table class="tab-content-table">
+                    <tr class="tab-content-table__header">
+                        <th>状態</th>
+                        <th>名前</th>
+                        <th>対象日付</th>
+                        <th>申請理由</th>
+                        <th>申請日時</th>
+                        <th>詳細</th>
+                    </tr>
+                    @forelse($approvedRequests as $request)
+                    <tr class="tab-content-table__data">
+                        <td>承認済み</td>
+                        <td>{{ $request->attendance->user->name }}</td>
+                        <td>{{ $request->attendance->date->format('Y/m/d') }}</td>
+                        <td>{{ $request->request_reason }}</td>
+                        <td>{{ $request->created_at->format('Y/m/d H:i') }}</td>
+                        <td><a href="{{ route('user.attendance.detail', ['id' => $request->attendance->id]) }}">詳細</a></td>
+                    </tr>
+                    @empty
+                    <tr class="tab-content-table__data">
+                        <td colspan="6" style="text-align: center;">承認済みの申請はありません</td>
+                    </tr>
+                    @endforelse
+                </table>
             </div>
         </div>
     </div>

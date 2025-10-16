@@ -61,12 +61,31 @@ class FixesRequestController extends Controller
         }
         
         return redirect()->route('user.attendance.detail', ['id' => $attendance->id])
-            ->with('success', '修正申請を送信しました。');
+            ->with('success');
     }
     
     // 修正申請一覧画面表示
     public function fixesRequestListShow()
     {
-        return view('user.auth.fixes_request');
+        $userId = Auth::id();
+        
+        // ログインユーザーの修正申請を取得（勤怠記録とユーザー情報も含める）
+        $pendingRequests = FixesAttendanceRequest::with(['attendance.user', 'fixesBreakRequests'])
+            ->whereHas('attendance', function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            })
+            ->where('status', 'pending')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        
+        $approvedRequests = FixesAttendanceRequest::with(['attendance.user', 'fixesBreakRequests'])
+            ->whereHas('attendance', function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            })
+            ->where('status', 'approved')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        
+        return view('user.auth.fixes_request', compact('pendingRequests', 'approvedRequests'));
     }
 }
