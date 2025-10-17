@@ -12,7 +12,8 @@ class FixesRequestController extends Controller
     // 申請一覧画面表示
     public function fixesRequestListShow()
     {
-        return view('admin.auth.fixes_request');
+        $fixesRequests = FixesAttendanceRequest::all();
+        return view('admin.auth.fixes_request', compact('fixesRequests'));
     }
 
     // 管理者による勤怠データ修正処理

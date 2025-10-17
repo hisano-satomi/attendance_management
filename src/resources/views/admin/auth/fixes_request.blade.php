@@ -25,14 +25,16 @@
                         <th>申請日時</th>
                         <th>詳細</th>
                     </tr>
+                    @foreach ($fixesRequests as $request)
                     <tr class="tab-content-table__data">
                         <td>承認待ち</td>
-                        <td>山田 太郎</td>
-                        <td>2023/06/01</td>
-                        <td>遅延のため</td>
-                        <td>2023/06/02</td>
-                        <td><a href="#">詳細</a></td>
+                        <td>{{ $request->attendance->user->name }}</td>
+                        <td>{{ $request->attendance->date->format('Y/m/d') }}</td>
+                        <td>{{ $request->request_reason }}</td>
+                        <td>{{ $request->created_at->format('Y/m/d H:i') }}</td>
+                        <td><a href="{{ route('admin.attendance.detail', ['id' => $request->attendance->id]) }}">詳細</a></td>
                     </tr>
+                    @endforeach
                 </table>
             </div>
             <div class="tab-content" id="approved">
