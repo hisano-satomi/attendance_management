@@ -43,8 +43,8 @@ Route::prefix('admin')->group(function () {
         Route::post('/attendances/{id}/update', [FixesRequestController::class, 'fixesRequest'])->name('admin.attendance.update');
         Route::get('/requests', [FixesRequestController::class, 'fixesRequestListShow'])->name('admin.requests.list');
         Route::get('/users', [UsersAttendanceController::class, 'usersListShow'])->name('admin.users.list');
-        Route::get('/users/id/attendances', [UsersAttendanceController::class, 'usersAttendanceShow'])->name('admin.users.attendance');
-        Route::get('/requests/id', [ApprovalController::class, 'approvalPageShow'])->name('admin.approval.page');
+        Route::get('/users/{id}/attendances', [UsersAttendanceController::class, 'usersAttendanceShow'])->name('admin.users.attendance');
+        Route::get('/requests/{id}', [ApprovalController::class, 'approvalPageShow'])->name('admin.approval.page');
     });
 });
 
