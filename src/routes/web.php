@@ -32,14 +32,19 @@ use App\Http\Controllers\User\FixesRequestController as UserFixesRequestControll
 
 // 管理者でログイン
 Route::prefix('admin')->group(function () {
+    // ログインページは認証不要
     Route::get('/login', [AdminAuthController::class, 'loginPageShow'])->name('admin.login');
     Route::post('/login', [AdminAuthController::class, 'loginProcess'])->name('admin.login.post');
-    Route::get('/attendances', [TimesheetController::class, 'attendanceListShow'])->name('admin.attendance.list');
-    Route::get('/attendances/id', [TimesheetController::class, 'attendanceDetailShow'])->name('admin.attendance.detail');
-    Route::get('/requests', [FixesRequestController::class, 'fixesRequestListShow'])->name('admin.requests.list');
-    Route::get('/users', [UsersAttendanceController::class, 'usersListShow'])->name('admin.users.list');
-    Route::get('/users/id/attendances', [UsersAttendanceController::class, 'usersAttendanceShow'])->name('admin.users.attendance');
-    Route::get('/requests/id', [ApprovalController::class, 'approvalPageShow'])->name('admin.approval.page');
+    
+    // 以下のルートは管理者のみアクセス可能
+    Route::middleware('admin')->group(function () {
+        Route::get('/attendances', [TimesheetController::class, 'attendanceListShow'])->name('admin.attendance.list');
+        Route::get('/attendances/id', [TimesheetController::class, 'attendanceDetailShow'])->name('admin.attendance.detail');
+        Route::get('/requests', [FixesRequestController::class, 'fixesRequestListShow'])->name('admin.requests.list');
+        Route::get('/users', [UsersAttendanceController::class, 'usersListShow'])->name('admin.users.list');
+        Route::get('/users/id/attendances', [UsersAttendanceController::class, 'usersAttendanceShow'])->name('admin.users.attendance');
+        Route::get('/requests/id', [ApprovalController::class, 'approvalPageShow'])->name('admin.approval.page');
+    });
 });
 
 // 一般ユーザーでログイン（認証が必要）

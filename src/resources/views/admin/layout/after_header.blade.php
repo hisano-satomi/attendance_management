@@ -17,9 +17,9 @@
             </h1>
 
             <ul class="header-nav">
-                <li class="header-nav__item"><a href="">勤怠一覧</a></li>
-                <li class="header-nav__item"><a href="">スタッフ一覧</a></li>
-                <li class="header-nav__item"><a href="">申請一覧</a></li>
+                <li class="header-nav__item"><a href="{{ route('admin.attendance.list') }}">勤怠一覧</a></li>
+                <li class="header-nav__item"><a href="{{ route('admin.users.list') }}">スタッフ一覧</a></li>
+                <li class="header-nav__item"><a href="{{ route('admin.requests.list') }}">申請一覧</a></li>
                 <li class="header-nav__item">
                     <form action="{{ route('logout') }}" method="POST" class="logout-form">
                         @csrf

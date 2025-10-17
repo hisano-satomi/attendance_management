@@ -12,22 +12,14 @@
         <!-- 日付ページネーション -->
         <div class="date-navigation">
             <div class="date-navigation__controls">
-                <a href="{{ route('user.attendance.list', ['year' => $prevMonth->year, 'month' => $prevMonth->month]) }}" class="nav-button nav-button--prev">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="15,18 9,12 15,6"></polyline>
-                    </svg>
-                </a>
+                <a href="{{ route('user.attendance.list', ['year' => $prevMonth->year, 'month' => $prevMonth->month]) }}" class="nav-button nav-button--prev"></a>
                 
                 <div class="current-month">
                     <span class="calendar-icon">📅</span>
                     <span class="current-month__date">{{ $currentMonth->format('Y/m') }}</span>
                 </div>
                 
-                <a href="{{ route('user.attendance.list', ['year' => $nextMonth->year, 'month' => $nextMonth->month]) }}" class="nav-button nav-button--next">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="9,18 15,12 9,6"></polyline>
-                    </svg>
-                </a>
+                <a href="{{ route('user.attendance.list', ['year' => $nextMonth->year, 'month' => $nextMonth->month]) }}" class="nav-button nav-button--next"></a>
             </div>
         </div>
 

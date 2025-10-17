@@ -19,8 +19,8 @@ class AdminAuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        // 認証処理
-        if (auth()->attempt($credentials)) {
+        // 認証処理（is_adminがtrueのユーザーのみ）
+        if (auth()->attempt(array_merge($credentials, ['is_admin' => true]))) {
             $request->session()->regenerate();
             
             // 管理者としてログインしたことをセッションに保存
