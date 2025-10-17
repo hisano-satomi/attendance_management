@@ -62,10 +62,6 @@ body {
     color: #000000;
 }
 
-.nav-button svg {
-    color: #000000;
-}
-
 .nav-button--prev::before {
     content: "← 前日";
     margin-right: 5px;
