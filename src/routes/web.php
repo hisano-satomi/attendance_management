@@ -39,7 +39,8 @@ Route::prefix('admin')->group(function () {
     // 以下のルートは管理者のみアクセス可能
     Route::middleware('admin')->group(function () {
         Route::get('/attendances', [TimesheetController::class, 'attendanceListShow'])->name('admin.attendance.list');
-        Route::get('/attendances/id', [TimesheetController::class, 'attendanceDetailShow'])->name('admin.attendance.detail');
+        Route::get('/attendances/{id}', [TimesheetController::class, 'attendanceDetailShow'])->name('admin.attendance.detail');
+        Route::post('/attendances/{id}/update', [FixesRequestController::class, 'fixesRequest'])->name('admin.attendance.update');
         Route::get('/requests', [FixesRequestController::class, 'fixesRequestListShow'])->name('admin.requests.list');
         Route::get('/users', [UsersAttendanceController::class, 'usersListShow'])->name('admin.users.list');
         Route::get('/users/id/attendances', [UsersAttendanceController::class, 'usersAttendanceShow'])->name('admin.users.attendance');
