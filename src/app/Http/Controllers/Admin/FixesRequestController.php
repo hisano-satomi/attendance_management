@@ -4,18 +4,12 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\FixesAttendanceRequest;
-use App\Models\FixesBreakRequest;
+use App\Models\Attendance;
+use Carbon\Carbon;
+use App\Models\BreakTime;
 
 class FixesRequestController extends Controller
 {
-    // 申請一覧画面表示
-    public function fixesRequestListShow()
-    {
-        $fixesRequests = FixesAttendanceRequest::all();
-        return view('admin.auth.fixes_request', compact('fixesRequests'));
-    }
-
     // 管理者による勤怠データ修正処理
     public function fixesRequest(Request $request, $id)
     {
