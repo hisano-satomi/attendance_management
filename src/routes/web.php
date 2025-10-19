@@ -45,6 +45,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/users', [UsersAttendanceController::class, 'usersListShow'])->name('admin.users.list');
         Route::get('/users/{id}/attendances', [UsersAttendanceController::class, 'usersAttendanceShow'])->name('admin.users.attendance');
         Route::get('/requests/{id}', [ApprovalController::class, 'approvalPageShow'])->name('admin.approval.page');
+        Route::post('/requests/{id}', [ApprovalController::class, 'approval'])->name('admin.approval');
     });
 });
 
@@ -61,7 +62,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/stamp_correction_request/list', [UserFixesRequestController::class, 'fixesRequestListShow'])->name('user.requests.list');
 });
 
-// ログアウト（Fortify）
+// 一般ユーザー用ログアウト（Fortify）
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('web')
     ->name('logout');

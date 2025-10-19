@@ -8,6 +8,10 @@
     <div class="container">
         <h2 class="content-title">勤怠詳細</h2>
 
+        @if(session('error'))
+            <div class="alert alert-error">{{ session('error') }}</div>
+        @endif
+
         <form action="{{ route('admin.attendance.update', $attendance->id) }}" method="POST">
             @csrf
             <table class="attendance-detail-table">
@@ -62,7 +66,7 @@
                 <tr class="attendance-detail-table__row">
                     <th>備考</th>
                     <td>
-                        <textarea name="remarks" id="remarks" cols="30" rows="5" class="attendance-detail__remarks" {{ $hasPendingRequest ? 'disabled' : '' }} readonly>{{ $hasPendingRequest && $pendingRequest->request_reason ? $pendingRequest->request_reason : '管理者による直接修正' }}</textarea>
+                        <textarea name="remarks" id="remarks" cols="30" rows="5" class="attendance-detail__remarks" {{ $hasPendingRequest ? 'disabled' : '' }}>{{ $hasPendingRequest && $pendingRequest->request_reason ? $pendingRequest->request_reason : '' }}</textarea>
                     </td>
                 </tr>
             </table>

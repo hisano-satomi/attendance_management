@@ -108,7 +108,14 @@ body {
     background-color: #333;
 }
 
-.btn-approved {
+/* 承認済み表示 */
+.attendance-detail-table__approved {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.approved-status {
+    display: inline-block;
     background-color: #696969;
     color: white;
     border: none;
@@ -116,5 +123,6 @@ body {
     border-radius: 6px;
     font-size: 16px;
     font-weight: normal;
-    cursor: pointer;
+    margin: 0;
+    text-align: center;
 }
