@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\LoginRequest;
 use App\Models\User;
 
 class AdminAuthController extends Controller
@@ -15,8 +15,9 @@ class AdminAuthController extends Controller
     }
 
     // 管理者用ログイン処理
-    public function loginProcess(Request $request)
+    public function loginProcess(LoginRequest $request)
     {
+        // バリデーション済み（LoginRequestで実行）
         $credentials = $request->only('email', 'password');
 
         // 認証処理（is_adminがtrueのユーザーのみ）
@@ -29,7 +30,9 @@ class AdminAuthController extends Controller
             return redirect()->intended('/admin/attendances'); // ログイン成功後のリダイレクト先
         }
 
-        // 認証失敗時の処理
-        return back()->onlyInput('email');
+        // 認証失敗時の処理（登録済み情報のみ可）
+        return back()
+            ->withInput($request->only('email'))
+            ->withErrors(['email' => 'ログイン情報が登録されていません']);
     }
 }
