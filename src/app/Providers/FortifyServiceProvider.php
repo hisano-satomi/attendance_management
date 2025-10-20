@@ -6,14 +6,19 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Http\Requests\User\LoginRequest;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Contracts\LoginResponse;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -64,6 +69,22 @@ class FortifyServiceProvider extends ServiceProvider
         // 一般ユーザー用登録画面
         Fortify::registerView(function () {
             return view('user.register');
+        });
+
+        // ログイン認証処理をカスタマイズ
+        // バリデーションはミドルウェア（ValidateLoginRequest）で実行済み
+        Fortify::authenticateUsing(function (Request $request) {
+            // 認証処理（登録済み情報のみ可）
+            $user = User::where('email', $request->email)->first();
+            
+            if ($user && Hash::check($request->password, $user->password)) {
+                return $user;
+            }
+            
+            // 認証失敗時のカスタムエラーメッセージ
+            throw ValidationException::withMessages([
+                'email' => ['ログイン情報が登録されていません'],
+            ]);
         });
 
         Fortify::createUsersUsing(CreateNewUser::class);

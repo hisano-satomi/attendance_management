@@ -12,10 +12,16 @@
             <div class="content-form--item">
                 <label for="email">メールアドレス</label>
                 <input type="email" id="email" name="email">
+                @error('email')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
             <div class="content-form--item">
                 <label for="password">パスワード</label>
                 <input type="password" id="password" name="password">
+                @error('password')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
             <button class="content-form--button" type="submit">ログインする</button>
             <a class="register-link" href="{{ url('/register') }}">会員登録はこちら</a>
