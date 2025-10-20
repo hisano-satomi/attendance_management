@@ -12,18 +12,30 @@
             <div class="content-form--item">
                 <label for="name">名前</label>
                 <input type="text" id="name" name="name">
+                @error('name')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
             <div class="content-form--item">
                 <label for="email">メールアドレス</label>
                 <input type="email" id="email" name="email">
+                @error('email')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
             <div class="content-form--item">
                 <label for="password">パスワード</label>
                 <input type="password" id="password" name="password">
+                @error('password')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
             <div class="content-form--item">
                 <label for="password_confirmation">パスワード確認</label>
                 <input type="password" id="password_confirmation" name="password_confirmation">
+                @error('password_confirmation')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
             <button class="content-form--button" type="submit">登録する</button>
             <a class="login-link" href="{{ url('/login') }}">ログインはこちら</a>
