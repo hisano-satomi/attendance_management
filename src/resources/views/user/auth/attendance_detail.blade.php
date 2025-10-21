@@ -25,8 +25,14 @@
                     <th>出勤・退勤</th>
                     <td>
                         <input type="time" name="work_start" id="work_start" value="{{ $hasPendingRequest && $pendingRequest->work_start ? $pendingRequest->work_start->format('H:i') : ($attendance->work_start ? $attendance->work_start->format('H:i') : '') }}" {{ $hasPendingRequest ? 'disabled' : '' }}>
+                        @error('work_start')
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
                         ～
                         <input type="time" name="work_stop" id="work_stop" value="{{ $hasPendingRequest && $pendingRequest->work_stop ? $pendingRequest->work_stop->format('H:i') : ($attendance->work_stop ? $attendance->work_stop->format('H:i') : '') }}" {{ $hasPendingRequest ? 'disabled' : '' }}>
+                        @error('work_stop')
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
                     </td>
                 </tr>
                 @if($hasPendingRequest && $pendingRequest->fixesBreakRequests->count() > 0)
@@ -35,8 +41,14 @@
                         <th>休憩{{ $index + 1 }}</th>
                         <td>
                             <input type="time" name="break_start[]" id="break_start_{{ $index }}" value="{{ $fixesBreak->break_start ? $fixesBreak->break_start->format('H:i') : '' }}" disabled>
+                            @error('break_start')
+                                <p class="error-message">{{ $message }}</p>
+                            @enderror
                             ～
                             <input type="time" name="break_stop[]" id="break_stop_{{ $index }}" value="{{ $fixesBreak->break_stop ? $fixesBreak->break_stop->format('H:i') : '' }}" disabled>
+                            @error('break_stop')
+                                <p class="error-message">{{ $message }}</p>
+                            @enderror
                         </td>
                     </tr>
                     @endforeach
@@ -46,8 +58,14 @@
                         <th>休憩{{ $index + 1 }}</th>
                         <td>
                             <input type="time" name="break_start[]" id="break_start_{{ $index }}" value="{{ $breakTime->break_start ? $breakTime->break_start->format('H:i') : '' }}" {{ $hasPendingRequest ? 'disabled' : '' }}>
+                            @error('break_start')
+                                <p class="error-message">{{ $message }}</p>
+                            @enderror
                             ～
                             <input type="time" name="break_stop[]" id="break_stop_{{ $index }}" value="{{ $breakTime->break_stop ? $breakTime->break_stop->format('H:i') : '' }}" {{ $hasPendingRequest ? 'disabled' : '' }}>
+                            @error('break_stop')
+                                <p class="error-message">{{ $message }}</p>
+                            @enderror
                         </td>
                     </tr>
                     @endforeach
@@ -60,11 +78,20 @@
                         ～
                         <input type="time" name="end_time" id="end_time" {{ $hasPendingRequest ? 'disabled' : '' }}>
                     </td>
+                    @error('break_start')
+                        <p class="error-message">{{ $message }}</p>
+                    @enderror
+                    @error('break_stop')
+                        <p class="error-message">{{ $message }}</p>
+                    @enderror
                 </tr>
                 <tr class="attendance-detail-table__row">
                     <th>備考</th>
                     <td>
                         <textarea name="remarks" id="remarks" cols="30" rows="5" class="attendance-detail__remarks" {{ $hasPendingRequest ? 'disabled' : '' }}>{{ $hasPendingRequest && $pendingRequest->request_reason ? $pendingRequest->request_reason : '' }}</textarea>
+                        @error('remarks')
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
                     </td>
                 </tr>
             </table>

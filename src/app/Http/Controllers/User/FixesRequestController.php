@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\User\AttendanceRequest;
 use App\Models\FixesAttendanceRequest;
 use App\Models\FixesBreakRequest;
 use App\Models\Attendance;
@@ -14,7 +15,7 @@ use Carbon\Carbon;
 class FixesRequestController extends Controller
 {
     // 修正申請処理
-    public function fixesRequest(Request $request)
+    public function fixesRequest(AttendanceRequest $request)
     {
         $userId = Auth::id();
         
