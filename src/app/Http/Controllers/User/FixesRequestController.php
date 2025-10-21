@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\User\AttendanceRequest;
+use App\Http\Requests\AttendanceRequest;
 use App\Models\FixesAttendanceRequest;
 use App\Models\FixesBreakRequest;
 use App\Models\Attendance;

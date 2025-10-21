@@ -31,6 +31,12 @@
                         ～
                         <input type="time" name="work_stop" id="work_stop" value="{{ $hasPendingRequest && $pendingRequest->work_stop ? $pendingRequest->work_stop->format('H:i') : ($attendance->work_stop ? $attendance->work_stop->format('H:i') : '') }}" {{ $hasPendingRequest ? 'disabled' : '' }}>
                     </td>
+                    @error('work_start')
+                        <p class="error-message">{{ $message }}</p>
+                    @enderror
+                    @error('work_stop')
+                        <p class="error-message">{{ $message }}</p>
+                    @enderror
                 </tr>
                 @if($hasPendingRequest && $pendingRequest->fixesBreakRequests->count() > 0)
                     @foreach ($pendingRequest->fixesBreakRequests as $index => $fixesBreak)
@@ -41,6 +47,12 @@
                             ～
                             <input type="time" name="break_stop[]" id="break_stop_{{ $index }}" value="{{ $fixesBreak->break_stop ? $fixesBreak->break_stop->format('H:i') : '' }}" disabled>
                         </td>
+                        @error('break_start')
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
+                        @error('break_stop')
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
                     </tr>
                     @endforeach
                 @else
@@ -68,6 +80,9 @@
                     <td>
                         <textarea name="remarks" id="remarks" cols="30" rows="5" class="attendance-detail__remarks" {{ $hasPendingRequest ? 'disabled' : '' }}>{{ $hasPendingRequest && $pendingRequest->request_reason ? $pendingRequest->request_reason : '' }}</textarea>
                     </td>
+                    @error('remarks')
+                        <p class="error-message">{{ $message }}</p>
+                    @enderror
                 </tr>
             </table>
 

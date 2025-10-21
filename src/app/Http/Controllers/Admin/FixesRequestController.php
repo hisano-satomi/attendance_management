@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\AttendanceRequest;
 use App\Models\Attendance;
 use App\Models\FixesAttendanceRequest;
 use App\Models\FixesBreakRequest;
@@ -12,7 +13,7 @@ use Carbon\Carbon;
 class FixesRequestController extends Controller
 {
     // 管理者による勤怠修正申請処理
-    public function fixesRequest(Request $request, $id)
+    public function fixesRequest(AttendanceRequest $request, $id)
     {
         // 勤怠記録を取得
         $attendance = Attendance::findOrFail($id);
