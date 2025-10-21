@@ -46,6 +46,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/users/{id}/attendances', [UsersAttendanceController::class, 'usersAttendanceShow'])->name('admin.users.attendance');
         Route::get('/requests/{id}', [ApprovalController::class, 'approvalPageShow'])->name('admin.approval.page');
         Route::post('/requests/{id}', [ApprovalController::class, 'approval'])->name('admin.approval');
+        Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
     });
 });
 

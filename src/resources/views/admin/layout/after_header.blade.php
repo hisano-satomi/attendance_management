@@ -21,7 +21,7 @@
                 <li class="header-nav__item"><a href="{{ route('admin.users.list') }}">スタッフ一覧</a></li>
                 <li class="header-nav__item"><a href="{{ route('admin.requests.list') }}">申請一覧</a></li>
                 <li class="header-nav__item">
-                    <form action="{{ route('logout') }}" method="POST" class="logout-form">
+                    <form action="{{ route('admin.logout') }}" method="POST" class="logout-form">
                         @csrf
                         <button type="submit" class="logout-button">ログアウト</button>
                     </form>

@@ -35,4 +35,14 @@ class AdminAuthController extends Controller
             ->withInput($request->only('email'))
             ->withErrors(['email' => 'ログイン情報が登録されていません']);
     }
+
+    // 管理者用ログアウト処理
+    public function logout()
+    {
+        auth()->logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        
+        return redirect()->route('admin.login');
+    }
 }
