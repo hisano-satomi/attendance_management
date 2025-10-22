@@ -71,3 +71,11 @@
 .content-form--button:active {
     background-color: #555555;
 }
+
+/* エラーメッセージ */
+.error-message {
+    color: #dc3545;
+    font-size: 13px;
+    margin-top: 5px;
+    margin-bottom: 0;
+}

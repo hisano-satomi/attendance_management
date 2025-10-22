@@ -161,3 +161,11 @@ body {
     font-size: 14px;
     margin: 0;
 }
+
+/* エラーメッセージ */
+.error-message {
+    color: #dc3545;
+    font-size: 13px;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
