@@ -154,3 +154,23 @@ body {
 .btn-primary:active {
     background-color: #555555;
 }
+
+/* 承認待ちメッセージ */
+.attendance-detail__waiting-approval {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.attendance-detail__waiting-approval p {
+    color: #dc3545;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* エラーメッセージ */
+.error-message {
+    color: #dc3545;
+    font-size: 13px;
+    margin-top: 5px;
+    margin-bottom: 0;
+}

@@ -27,32 +27,32 @@
                 <tr class="attendance-detail-table__row">
                     <th>出勤・退勤</th>
                     <td>
-                        <input type="time" name="work_start" id="work_start" value="{{ $hasPendingRequest && $pendingRequest->work_start ? $pendingRequest->work_start->format('H:i') : ($attendance->work_start ? $attendance->work_start->format('H:i') : '') }}" {{ $hasPendingRequest ? 'disabled' : '' }}>
+                        <input type="time" name="work_start" id="work_start" value="{{ old('work_start', $hasPendingRequest && $pendingRequest->work_start ? $pendingRequest->work_start->format('H:i') : ($attendance->work_start ? $attendance->work_start->format('H:i') : '')) }}" {{ $hasPendingRequest ? 'disabled' : '' }}>
+                        @error('work_start')
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
                         ～
-                        <input type="time" name="work_stop" id="work_stop" value="{{ $hasPendingRequest && $pendingRequest->work_stop ? $pendingRequest->work_stop->format('H:i') : ($attendance->work_stop ? $attendance->work_stop->format('H:i') : '') }}" {{ $hasPendingRequest ? 'disabled' : '' }}>
+                        <input type="time" name="work_stop" id="work_stop" value="{{ old('work_stop', $hasPendingRequest && $pendingRequest->work_stop ? $pendingRequest->work_stop->format('H:i') : ($attendance->work_stop ? $attendance->work_stop->format('H:i') : '')) }}" {{ $hasPendingRequest ? 'disabled' : '' }}>
+                        @error('work_stop')
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
                     </td>
-                    @error('work_start')
-                        <p class="error-message">{{ $message }}</p>
-                    @enderror
-                    @error('work_stop')
-                        <p class="error-message">{{ $message }}</p>
-                    @enderror
                 </tr>
                 @if($hasPendingRequest && $pendingRequest->fixesBreakRequests->count() > 0)
                     @foreach ($pendingRequest->fixesBreakRequests as $index => $fixesBreak)
                     <tr class="attendance-detail-table__row">
                         <th>休憩{{ $index + 1 }}</th>
                         <td>
-                            <input type="time" name="break_start[]" id="break_start_{{ $index }}" value="{{ $fixesBreak->break_start ? $fixesBreak->break_start->format('H:i') : '' }}" disabled>
+                            <input type="time" name="break_start[]" id="break_start_{{ $index }}" value="{{ old('break_start.' . $index, $fixesBreak->break_start ? $fixesBreak->break_start->format('H:i') : '') }}" disabled>
+                            @error("break_start.{$index}")
+                                <p class="error-message">{{ $message }}</p>
+                            @enderror
                             ～
-                            <input type="time" name="break_stop[]" id="break_stop_{{ $index }}" value="{{ $fixesBreak->break_stop ? $fixesBreak->break_stop->format('H:i') : '' }}" disabled>
+                            <input type="time" name="break_stop[]" id="break_stop_{{ $index }}" value="{{ old('break_stop.' . $index, $fixesBreak->break_stop ? $fixesBreak->break_stop->format('H:i') : '') }}" disabled>
+                            @error("break_stop.{$index}")
+                                <p class="error-message">{{ $message }}</p>
+                            @enderror
                         </td>
-                        @error('break_start')
-                            <p class="error-message">{{ $message }}</p>
-                        @enderror
-                        @error('break_stop')
-                            <p class="error-message">{{ $message }}</p>
-                        @enderror
                     </tr>
                     @endforeach
                 @else
@@ -60,9 +60,15 @@
                     <tr class="attendance-detail-table__row">
                         <th>休憩{{ $index + 1 }}</th>
                         <td>
-                            <input type="time" name="break_start[]" id="break_start_{{ $index }}" value="{{ $breakTime->break_start ? $breakTime->break_start->format('H:i') : '' }}" {{ $hasPendingRequest ? 'disabled' : '' }}>
+                            <input type="time" name="break_start[]" id="break_start_{{ $index }}" value="{{ old('break_start.' . $index, $breakTime->break_start ? $breakTime->break_start->format('H:i') : '') }}" {{ $hasPendingRequest ? 'disabled' : '' }}>
+                            @error("break_start.{$index}")
+                                <p class="error-message">{{ $message }}</p>
+                            @enderror
                             ～
-                            <input type="time" name="break_stop[]" id="break_stop_{{ $index }}" value="{{ $breakTime->break_stop ? $breakTime->break_stop->format('H:i') : '' }}" {{ $hasPendingRequest ? 'disabled' : '' }}>
+                            <input type="time" name="break_stop[]" id="break_stop_{{ $index }}" value="{{ old('break_stop.' . $index, $breakTime->break_stop ? $breakTime->break_stop->format('H:i') : '') }}" {{ $hasPendingRequest ? 'disabled' : '' }}>
+                            @error("break_stop.{$index}")
+                                <p class="error-message">{{ $message }}</p>
+                            @enderror
                         </td>
                     </tr>
                     @endforeach
@@ -70,19 +76,25 @@
                 <tr class="attendance-detail-table__row">
                     <th>休憩{{ $breakTimes->count() + 1 }}</th>
                     <td>
-                        <input type="time" name="break_start[]" id="break_start_new" {{ $hasPendingRequest ? 'disabled' : '' }}>
+                        <input type="time" name="break_start[]" id="break_start_new" value="{{ old('break_start.' . $breakTimes->count()) }}" {{ $hasPendingRequest ? 'disabled' : '' }}>
+                        @error("break_start.{$breakTimes->count()}")
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
                         ～
-                        <input type="time" name="break_stop[]" id="break_stop_new" {{ $hasPendingRequest ? 'disabled' : '' }}>
+                        <input type="time" name="break_stop[]" id="break_stop_new" value="{{ old('break_stop.' . $breakTimes->count()) }}" {{ $hasPendingRequest ? 'disabled' : '' }}>
+                        @error("break_stop.{$breakTimes->count()}")
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
                     </td>
                 </tr>
                 <tr class="attendance-detail-table__row">
                     <th>備考</th>
                     <td>
-                        <textarea name="remarks" id="remarks" cols="30" rows="5" class="attendance-detail__remarks" {{ $hasPendingRequest ? 'disabled' : '' }}>{{ $hasPendingRequest && $pendingRequest->request_reason ? $pendingRequest->request_reason : '' }}</textarea>
+                        <textarea name="remarks" id="remarks" cols="30" rows="5" class="attendance-detail__remarks" {{ $hasPendingRequest ? 'disabled' : '' }}>{{ old('remarks', $hasPendingRequest && $pendingRequest->request_reason ? $pendingRequest->request_reason : '') }}</textarea>
+                        @error('remarks')
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
                     </td>
-                    @error('remarks')
-                        <p class="error-message">{{ $message }}</p>
-                    @enderror
                 </tr>
             </table>
 
@@ -92,7 +104,7 @@
             </div>
             @else
             <div class="attendance-detail__waiting-approval">
-                <p>*承認待ちの修正申請があるため、現在は修正できません。</p>
+                <p>*承認待ちのため修正はできません。</p>
             </div>
             @endif
         </form>
