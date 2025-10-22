@@ -34,7 +34,7 @@ use App\Http\Controllers\User\FixesRequestController as UserFixesRequestControll
 Route::prefix('admin')->group(function () {
     // ログインページは認証不要
     Route::get('/login', [AdminAuthController::class, 'loginPageShow'])->name('admin.login');
-    Route::post('/login', [AdminAuthController::class, 'loginProcess'])->name('admin.login.post');
+    Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login.post');
     
     // 以下のルートは管理者のみアクセス可能
     Route::middleware('admin')->group(function () {

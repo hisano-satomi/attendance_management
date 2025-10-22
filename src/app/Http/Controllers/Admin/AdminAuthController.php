@@ -15,7 +15,7 @@ class AdminAuthController extends Controller
     }
 
     // 管理者用ログイン処理
-    public function loginProcess(LoginRequest $request)
+    public function login(LoginRequest $request)
     {
         // バリデーション済み（LoginRequestで実行）
         $credentials = $request->only('email', 'password');
