@@ -67,5 +67,10 @@
                 </tr>
             @endforelse
         </table>
+
+        <!-- CSV出力ボタン -->
+        <div class="csv-export-container">
+            <a href="{{ route('admin.users.attendance.csv', ['id' => $user->id, 'year' => $currentMonth->year, 'month' => $currentMonth->month]) }}" class="csv-export-button">CSV出力</a>
+        </div>
     </div>
 @endsection

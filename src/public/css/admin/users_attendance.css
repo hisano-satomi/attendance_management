@@ -160,3 +160,30 @@ body {
     width: 10%;
     text-align: center;
 }
+
+/* CSV出力ボタン */
+.csv-export-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.csv-export-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #000000;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.csv-export-button:hover {
+    background-color: #333333;
+}
+
+.csv-export-button:active {
+    background-color: #555555;
+}

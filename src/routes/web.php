@@ -44,6 +44,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/requests', [ApprovalController::class, 'fixesRequestListShow'])->name('admin.requests.list');
         Route::get('/users', [UsersAttendanceController::class, 'usersListShow'])->name('admin.users.list');
         Route::get('/users/{id}/attendances', [UsersAttendanceController::class, 'usersAttendanceShow'])->name('admin.users.attendance');
+        Route::get('/users/{id}/attendances/csv', [UsersAttendanceController::class, 'exportCsv'])->name('admin.users.attendance.csv');
         Route::get('/requests/{id}', [ApprovalController::class, 'approvalPageShow'])->name('admin.approval.page');
         Route::post('/requests/{id}', [ApprovalController::class, 'approval'])->name('admin.approval');
         Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
