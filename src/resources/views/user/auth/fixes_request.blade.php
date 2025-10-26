@@ -71,3 +71,36 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // タブボタンを取得
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // 各タブボタンにクリックイベントを設定
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // クリックされたタブのdata-tab属性を取得
+                const targetTab = this.getAttribute('data-tab');
+
+                // すべてのタブボタンからactiveクラスを削除
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+
+                // クリックされたタブボタンにactiveクラスを追加
+                this.classList.add('active');
+
+                // すべてのタブコンテンツからactiveクラスを削除
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // 対応するタブコンテンツにactiveクラスを追加
+                const targetContent = document.getElementById(targetTab);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+            });
+        });
+    });
+</script>
+@endsection

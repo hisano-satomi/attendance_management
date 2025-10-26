@@ -32,7 +32,7 @@
                         <td>{{ $request->attendance->date->format('Y/m/d') }}</td>
                         <td>{{ $request->request_reason }}</td>
                         <td>{{ $request->created_at->format('Y/m/d H:i') }}</td>
-                        <td><a href="{{ route('admin.approval.page', ['id' => $request->attendance->id]) }}">詳細</a></td>
+                        <td><a href="{{ route('admin.approval.page', ['id' => $request->id]) }}">詳細</a></td>
                     </tr>
                     @empty
                     <tr class="tab-content-table__data">
@@ -70,4 +70,37 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // タブボタンを取得
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // 各タブボタンにクリックイベントを設定
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // クリックされたタブのdata-tab属性を取得
+                const targetTab = this.getAttribute('data-tab');
+
+                // すべてのタブボタンからactiveクラスを削除
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+
+                // クリックされたタブボタンにactiveクラスを追加
+                this.classList.add('active');
+
+                // すべてのタブコンテンツからactiveクラスを削除
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // 対応するタブコンテンツにactiveクラスを追加
+                const targetContent = document.getElementById(targetTab);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+            });
+        });
+    });
+</script>
 @endsection
