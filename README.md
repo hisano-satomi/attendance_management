@@ -43,3 +43,6 @@ php artisan db:seed
 ## 管理者ログイン情報
 ・メールアドレス：taro@yamada.com  
 ・パスワード：password
+## 一般ユーザーログイン情報
+・メールアドレス：hanako@example.com  
+・パスワード：password
