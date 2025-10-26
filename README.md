@@ -37,5 +37,9 @@ php artisan db:seed
 ## ER図
 ![ER図](src/design/er.png)
 ## URL
-・開発環境：http://localhost/  
+・一般ユーザーログイン画面：http://localhost/
+・管理者ログイン画面：http://localhost/admin/login
 ・phpMyAdmin：http://localhost:8080/
+## 管理者ログイン情報
+・メールアドレス：taro@yamada.com
+・パスワード：password
