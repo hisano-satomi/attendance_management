@@ -75,11 +75,14 @@ body {
 .attendance-detail-table__year {
     font-size: 16px;
     color: #000000;
+    display: inline-block;
+    margin-right: 5px;
 }
 
 .attendance-detail-table__date {
     font-size: 16px;
     color: #000000;
+    display: inline-block;
 }
 
 /* 時間入力フィールド */

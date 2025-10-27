@@ -18,8 +18,10 @@
                 </tr>
                 <tr class="attendance-detail-table__row">
                     <th>日付</th>
-                    <td class="attendance-detail-table__year">{{ $attendance->date->year }}年</td>
-                    <td class="attendance-detail-table__date">{{ $attendance->date->month }}月{{ $attendance->date->day }}日</td>
+                    <td>
+                        <span class="attendance-detail-table__year">{{ $attendance->date->year }}年</span>
+                        <span class="attendance-detail-table__date">{{ $attendance->date->month }}月{{ $attendance->date->day }}日</span>
+                    </td>
                 </tr>
                 <tr class="attendance-detail-table__row">
                     <th>出勤・退勤</th>
