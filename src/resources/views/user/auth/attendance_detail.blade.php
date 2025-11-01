@@ -72,6 +72,29 @@
                     </tr>
                     @endforeach
                 @endif
+                
+                {{-- 新しい休憩時間を追加するための空の入力欄 --}}
+                @if(!$hasPendingRequest)
+                @php
+                    $nextIndex = $hasPendingRequest && $pendingRequest->fixesBreakRequests->count() > 0 
+                        ? $pendingRequest->fixesBreakRequests->count() 
+                        : $breakTimes->count();
+                @endphp
+                <tr class="attendance-detail-table__row">
+                    <th>休憩{{ $nextIndex + 1 }}</th>
+                    <td>
+                        <input type="time" name="break_start[]" id="break_start_{{ $nextIndex }}" value="{{ old('break_start.' . $nextIndex) }}">
+                        @error("break_start.{$nextIndex}")
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
+                        ～
+                        <input type="time" name="break_stop[]" id="break_stop_{{ $nextIndex }}" value="{{ old('break_stop.' . $nextIndex) }}">
+                        @error("break_stop.{$nextIndex}")
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
+                    </td>
+                </tr>
+                @endif
                 <tr class="attendance-detail-table__row">
                     <th>備考</th>
                     <td>
