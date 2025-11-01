@@ -26,9 +26,9 @@
             <div class="content-form--item">
                 <label for="password">パスワード</label>
                 <input type="password" id="password" name="password">
-                @error('password')
-                    <p class="error-message">{{ $message }}</p>
-                @enderror
+                @if($errors->has('password') && !str_contains($errors->first('password'), '一致'))
+                    <p class="error-message">{{ $errors->first('password') }}</p>
+                @endif
             </div>
             <div class="content-form--item">
                 <label for="password_confirmation">パスワード確認</label>
@@ -36,6 +36,9 @@
                 @error('password_confirmation')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
+                @if($errors->has('password') && str_contains($errors->first('password'), '一致'))
+                    <p class="error-message">{{ $errors->first('password') }}</p>
+                @endif
             </div>
             <button class="content-form--button" type="submit">登録する</button>
             <a class="login-link" href="{{ url('/login') }}">ログインはこちら</a>
