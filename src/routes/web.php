@@ -51,8 +51,8 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-// 一般ユーザーでログイン（認証が必要）
-Route::middleware('auth')->group(function () {
+// 一般ユーザーでログイン（認証とメール認証が必要）
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/attendance', [AttendanceController::class, 'attendancePageShow'])->name('user.attendance');
     Route::post('/work_start', [AttendanceController::class, 'workStart'])->name('user.attendance.work_start');
     Route::post('/work_stop', [AttendanceController::class, 'workStop'])->name('user.attendance.work_stop');

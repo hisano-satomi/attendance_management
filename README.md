@@ -39,7 +39,8 @@ php artisan db:seed
 ## URL
 ・一般ユーザーログイン画面：http://localhost/  
 ・管理者ログイン画面：http://localhost/admin/login  
-・phpMyAdmin：http://localhost:8080/
+・phpMyAdmin：http://localhost:8080/  
+・Mailhog：http://localhost:8025/
 ## 管理者ログイン情報
 ・メールアドレス：taro@yamada.com  
 ・パスワード：password

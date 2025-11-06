@@ -71,6 +71,11 @@ class FortifyServiceProvider extends ServiceProvider
             return view('user.register');
         });
 
+        // メール認証画面
+        Fortify::verifyEmailView(function () {
+            return view('user.auth.email');
+        });
+
         // ログイン認証処理をカスタマイズ
         // バリデーションはミドルウェア（ValidateLoginRequest）で実行済み
         Fortify::authenticateUsing(function (Request $request) {

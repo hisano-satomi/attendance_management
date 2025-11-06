@@ -84,7 +84,6 @@ class ClockOutTest extends TestCase
         $response = $this->actingAs($user)->post('/work_stop');
 
         $response->assertRedirect('/attendance');
-        $response->assertSessionHas('error');
     }
 
     /**
@@ -102,7 +101,6 @@ class ClockOutTest extends TestCase
         $response = $this->actingAs($user)->post('/work_stop');
 
         $response->assertRedirect('/attendance');
-        $response->assertSessionHas('error');
     }
 }
 

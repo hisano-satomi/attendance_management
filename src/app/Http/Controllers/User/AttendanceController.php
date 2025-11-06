@@ -32,8 +32,7 @@ class AttendanceController extends Controller
             ->first();
         
         if ($existingAttendance) {
-            return redirect()->route('user.attendance')
-                ->with('error', '本日は既に出勤登録されています。');
+            return redirect()->route('user.attendance');
         }
         
         // 新しい勤怠記録を作成
@@ -59,8 +58,7 @@ class AttendanceController extends Controller
             ->first();
         
         if (!$existingAttendance) {
-            return redirect()->route('user.attendance')
-                ->with('error', '本日は出勤登録されていません。');
+            return redirect()->route('user.attendance');
         }
 
         // 出勤中であれば退勤処理を実行可能（勤怠更新）
@@ -73,8 +71,7 @@ class AttendanceController extends Controller
             return redirect()->route('user.attendance');
         }
 
-        return redirect()->route('user.attendance')
-            ->with('error', '退勤処理を実行できません。');
+        return redirect()->route('user.attendance');
     }
 
     // 勤怠登録機能-休憩入処理
@@ -89,8 +86,7 @@ class AttendanceController extends Controller
             ->first();
 
         if (!$existingAttendance) {
-            return redirect()->route('user.attendance')
-                ->with('error', '本日は出勤登録されていません。');
+            return redirect()->route('user.attendance');
         }
 
         // 出勤中であれば休憩入処理を実行可能
@@ -109,8 +105,7 @@ class AttendanceController extends Controller
             return redirect()->route('user.attendance');
         }
 
-        return redirect()->route('user.attendance')
-            ->with('error', '休憩処理を実行できません。');
+        return redirect()->route('user.attendance');
     }
 
     // 勤怠登録機能-休憩戻処理
@@ -125,8 +120,7 @@ class AttendanceController extends Controller
             ->first();
 
         if (!$existingAttendance) {
-            return redirect()->route('user.attendance')
-                ->with('error', '本日は出勤登録されていません。');
+            return redirect()->route('user.attendance');
         }
 
         // 休憩中であれば休憩戻処理を実行可能
@@ -151,8 +145,7 @@ class AttendanceController extends Controller
             return redirect()->route('user.attendance');
         }
         
-        return redirect()->route('user.attendance')
-            ->with('error', '休憩戻処理を実行できません。');
+        return redirect()->route('user.attendance');
     }
 
     // 一般ユーザー用勤怠一覧画面表示

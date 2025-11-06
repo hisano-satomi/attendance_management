@@ -51,7 +51,6 @@ class ClockInTest extends TestCase
         $response = $this->actingAs($user)->post('/work_start');
 
         $response->assertRedirect('/attendance');
-        $response->assertSessionHas('error', '本日は既に出勤登録されています。');
         
         // データベースに1件のみ存在することを確認
         $this->assertEquals(1, Attendance::where('user_id', $user->id)
