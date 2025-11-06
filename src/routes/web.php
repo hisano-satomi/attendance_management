@@ -38,15 +38,15 @@ Route::prefix('admin')->group(function () {
     
     // 以下のルートは管理者のみアクセス可能
     Route::middleware('admin')->group(function () {
-        Route::get('/attendances', [TimesheetController::class, 'attendanceListShow'])->name('admin.attendance.list');
-        Route::get('/attendances/{id}', [TimesheetController::class, 'attendanceDetailShow'])->name('admin.attendance.detail');
-        Route::post('/attendances/{id}/update', [FixesRequestController::class, 'fixesRequest'])->name('admin.attendance.update');
-        Route::get('/requests', [ApprovalController::class, 'fixesRequestListShow'])->name('admin.requests.list');
-        Route::get('/users', [UsersAttendanceController::class, 'usersListShow'])->name('admin.users.list');
-        Route::get('/users/{id}/attendances', [UsersAttendanceController::class, 'usersAttendanceShow'])->name('admin.users.attendance');
-        Route::get('/users/{id}/attendances/csv', [UsersAttendanceController::class, 'exportCsv'])->name('admin.users.attendance.csv');
-        Route::get('/requests/{id}', [ApprovalController::class, 'approvalPageShow'])->name('admin.approval.page');
-        Route::post('/requests/{id}', [ApprovalController::class, 'approval'])->name('admin.approval');
+        Route::get('/attendance/list', [TimesheetController::class, 'attendanceListShow'])->name('admin.attendance.list');
+        Route::get('/attendance/{id}', [TimesheetController::class, 'attendanceDetailShow'])->name('admin.attendance.detail');
+        Route::post('/attendance/{id}/update', [FixesRequestController::class, 'fixesRequest'])->name('admin.attendance.update');
+        Route::get('/stamp_correction_request/list', [ApprovalController::class, 'fixesRequestListShow'])->name('admin.requests.list');
+        Route::get('/staff/list', [UsersAttendanceController::class, 'usersListShow'])->name('admin.users.list');
+        Route::get('/attendance/staff/{id}', [UsersAttendanceController::class, 'usersAttendanceShow'])->name('admin.users.attendance');
+        Route::get('/attendance/staff/{id}/csv', [UsersAttendanceController::class, 'exportCsv'])->name('admin.users.attendance.csv');
+        Route::get('/stamp_correction_request/approve/{id}', [ApprovalController::class, 'approvalPageShow'])->name('admin.approval.page');
+        Route::post('/stamp_correction_request/approve/{id}', [ApprovalController::class, 'approval'])->name('admin.approval');
         Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
     });
 });

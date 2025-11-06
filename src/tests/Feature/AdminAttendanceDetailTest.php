@@ -47,7 +47,7 @@ class AdminAttendanceDetailTest extends TestCase
             'status' => 'done',
         ]);
 
-        $response = $this->actingAs($admin)->get('/admin/attendances/' . $attendance->id);
+        $response = $this->actingAs($admin)->get('/admin/attendance/' . $attendance->id);
 
         $response->assertStatus(200);
         $response->assertSeeText('テストユーザー');
@@ -72,7 +72,7 @@ class AdminAttendanceDetailTest extends TestCase
             'status' => 'done',
         ]);
 
-        $response = $this->actingAs($admin)->post('/admin/attendances/' . $attendance->id . '/update', [
+        $response = $this->actingAs($admin)->post('/admin/attendance/' . $attendance->id . '/update', [
             'work_start' => '19:00',
             'work_stop' => '18:00',
             'remarks' => '管理者による修正',
@@ -97,7 +97,7 @@ class AdminAttendanceDetailTest extends TestCase
             'status' => 'done',
         ]);
 
-        $response = $this->actingAs($admin)->post('/admin/attendances/' . $attendance->id . '/update', [
+        $response = $this->actingAs($admin)->post('/admin/attendance/' . $attendance->id . '/update', [
             'work_start' => '09:00',
             'work_stop' => '18:00',
             'break_start' => ['19:00'],
@@ -124,7 +124,7 @@ class AdminAttendanceDetailTest extends TestCase
             'status' => 'done',
         ]);
 
-        $response = $this->actingAs($admin)->post('/admin/attendances/' . $attendance->id . '/update', [
+        $response = $this->actingAs($admin)->post('/admin/attendance/' . $attendance->id . '/update', [
             'work_start' => '09:00',
             'work_stop' => '18:00',
             'break_start' => ['12:00'],
@@ -151,7 +151,7 @@ class AdminAttendanceDetailTest extends TestCase
             'status' => 'done',
         ]);
 
-        $response = $this->actingAs($admin)->post('/admin/attendances/' . $attendance->id . '/update', [
+        $response = $this->actingAs($admin)->post('/admin/attendance/' . $attendance->id . '/update', [
             'work_start' => '09:30',
             'work_stop' => '18:30',
             'remarks' => '',

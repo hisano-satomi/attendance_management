@@ -37,7 +37,7 @@ class AdminUserManagementTest extends TestCase
         $user1 = $this->createUser('山田太郎', 'yamada@example.com');
         $user2 = $this->createUser('佐藤花子', 'sato@example.com');
 
-        $response = $this->actingAs($admin)->get('/admin/users');
+        $response = $this->actingAs($admin)->get('/admin/staff/list');
 
         $response->assertStatus(200);
         $response->assertSeeText('山田太郎');
@@ -62,7 +62,7 @@ class AdminUserManagementTest extends TestCase
             'status' => 'done',
         ]);
 
-        $response = $this->actingAs($admin)->get('/admin/users/' . $user->id . '/attendances');
+        $response = $this->actingAs($admin)->get('/admin/attendance/staff/' . $user->id);
 
         $response->assertStatus(200);
         $response->assertSeeText('09:00');
@@ -85,7 +85,7 @@ class AdminUserManagementTest extends TestCase
             'status' => 'done',
         ]);
 
-        $response = $this->actingAs($admin)->get('/admin/users/' . $user->id . '/attendances?year=' . $lastMonth->year . '&month=' . $lastMonth->month);
+        $response = $this->actingAs($admin)->get('/admin/attendance/staff/' . $user->id . '?year=' . $lastMonth->year . '&month=' . $lastMonth->month);
 
         $response->assertStatus(200);
         $response->assertSeeText($lastMonth->format('Y/m'));
@@ -107,7 +107,7 @@ class AdminUserManagementTest extends TestCase
             'status' => 'done',
         ]);
 
-        $response = $this->actingAs($admin)->get('/admin/users/' . $user->id . '/attendances?year=' . $nextMonth->year . '&month=' . $nextMonth->month);
+        $response = $this->actingAs($admin)->get('/admin/attendance/staff/' . $user->id . '?year=' . $nextMonth->year . '&month=' . $nextMonth->month);
 
         $response->assertStatus(200);
         $response->assertSeeText($nextMonth->format('Y/m'));
@@ -128,7 +128,7 @@ class AdminUserManagementTest extends TestCase
             'status' => 'working',
         ]);
 
-        $response = $this->actingAs($admin)->get('/admin/attendances/' . $attendance->id);
+        $response = $this->actingAs($admin)->get('/admin/attendance/' . $attendance->id);
 
         $response->assertStatus(200);
     }
@@ -140,7 +140,7 @@ class AdminUserManagementTest extends TestCase
     {
         $user = $this->createUser();
 
-        $response = $this->actingAs($user)->get('/admin/users');
+        $response = $this->actingAs($user)->get('/admin/staff/list');
 
         $response->assertStatus(403);
     }

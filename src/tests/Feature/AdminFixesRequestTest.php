@@ -67,7 +67,7 @@ class AdminFixesRequestTest extends TestCase
             'status' => 'pending',
         ]);
 
-        $response = $this->actingAs($admin)->get('/admin/requests');
+        $response = $this->actingAs($admin)->get('/admin/stamp_correction_request/list');
 
         $response->assertStatus(200);
         $response->assertSeeText('ユーザー1の申請');
@@ -97,7 +97,7 @@ class AdminFixesRequestTest extends TestCase
             'status' => 'approved',
         ]);
 
-        $response = $this->actingAs($admin)->get('/admin/requests');
+        $response = $this->actingAs($admin)->get('/admin/stamp_correction_request/list');
 
         $response->assertStatus(200);
         $response->assertSeeText('承認済み申請');
@@ -127,7 +127,7 @@ class AdminFixesRequestTest extends TestCase
             'status' => 'pending',
         ]);
 
-        $response = $this->actingAs($admin)->get('/admin/requests/' . $request->id);
+        $response = $this->actingAs($admin)->get('/admin/stamp_correction_request/approve/' . $request->id);
 
         $response->assertStatus(200);
         $response->assertSeeText('09:30');
@@ -159,7 +159,7 @@ class AdminFixesRequestTest extends TestCase
             'status' => 'pending',
         ]);
 
-        $response = $this->actingAs($admin)->post('/admin/requests/' . $request->id);
+        $response = $this->actingAs($admin)->post('/admin/stamp_correction_request/approve/' . $request->id);
 
         $response->assertRedirect();
 
@@ -199,7 +199,7 @@ class AdminFixesRequestTest extends TestCase
             'status' => 'pending',
         ]);
 
-        $response = $this->actingAs($user)->post('/admin/requests/' . $request->id);
+        $response = $this->actingAs($user)->post('/admin/stamp_correction_request/approve/' . $request->id);
 
         $response->assertStatus(403);
     }
@@ -211,7 +211,7 @@ class AdminFixesRequestTest extends TestCase
     {
         $user = $this->createUser();
 
-        $response = $this->actingAs($user)->get('/admin/requests');
+        $response = $this->actingAs($user)->get('/admin/stamp_correction_request/list');
 
         $response->assertStatus(403);
     }

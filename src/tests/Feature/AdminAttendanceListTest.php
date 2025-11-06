@@ -50,7 +50,7 @@ class AdminAttendanceListTest extends TestCase
             'status' => 'working',
         ]);
 
-        $response = $this->actingAs($admin)->get('/admin/attendances');
+        $response = $this->actingAs($admin)->get('/admin/attendance/list');
 
         $response->assertStatus(200);
         $response->assertSeeText($user1->name);
@@ -64,7 +64,7 @@ class AdminAttendanceListTest extends TestCase
     {
         $admin = $this->createAdmin();
 
-        $response = $this->actingAs($admin)->get('/admin/attendances');
+        $response = $this->actingAs($admin)->get('/admin/attendance/list');
 
         $response->assertStatus(200);
         $currentDate = Carbon::now()->format('Y/m/d');
@@ -88,7 +88,7 @@ class AdminAttendanceListTest extends TestCase
             'status' => 'done',
         ]);
 
-        $response = $this->actingAs($admin)->get('/admin/attendances?date=' . $yesterday->format('Y-m-d'));
+        $response = $this->actingAs($admin)->get('/admin/attendance/list?date=' . $yesterday->format('Y-m-d'));
 
         $response->assertStatus(200);
         $response->assertSeeText($yesterday->format('Y/m/d'));
@@ -111,7 +111,7 @@ class AdminAttendanceListTest extends TestCase
             'status' => 'done',
         ]);
 
-        $response = $this->actingAs($admin)->get('/admin/attendances?date=' . $tomorrow->format('Y-m-d'));
+        $response = $this->actingAs($admin)->get('/admin/attendance/list?date=' . $tomorrow->format('Y-m-d'));
 
         $response->assertStatus(200);
         $response->assertSeeText($tomorrow->format('Y/m/d'));
@@ -124,7 +124,7 @@ class AdminAttendanceListTest extends TestCase
     {
         $user = $this->createUser();
 
-        $response = $this->actingAs($user)->get('/admin/attendances');
+        $response = $this->actingAs($user)->get('/admin/attendance/list');
 
         // 403 Forbidden が期待される
         $response->assertStatus(403);

@@ -47,7 +47,7 @@
                     <tr class="tab-content-table__header">
                         <th>状態</th>
                         <th>名前</th>
-                        <th>対象日付</th>
+                        <th>対象日時</th>
                         <th>申請理由</th>
                         <th>申請日時</th>
                         <th>詳細</th>
