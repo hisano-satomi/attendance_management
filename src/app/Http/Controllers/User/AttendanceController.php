@@ -44,8 +44,7 @@ class AttendanceController extends Controller
             'status' => 'working'
         ]);
         
-        return redirect()->route('user.attendance')
-            ->with('success',);
+        return redirect()->route('user.attendance');
     }
 
     // 勤怠登録機能-退勤処理
@@ -65,15 +64,17 @@ class AttendanceController extends Controller
         }
 
         // 出勤中であれば退勤処理を実行可能（勤怠更新）
-        if ($existingAttendance->status === 'working') {
+        if ($existingAttendance->status === 'working' || $existingAttendance->status === 'breaking') {
             $existingAttendance->update([
                 'work_stop' => Carbon::now(),
                 'status' => 'done'
             ]);
+            
+            return redirect()->route('user.attendance');
         }
 
         return redirect()->route('user.attendance')
-            ->with('success',);
+            ->with('error', '退勤処理を実行できません。');
     }
 
     // 勤怠登録機能-休憩入処理
@@ -104,10 +105,12 @@ class AttendanceController extends Controller
                 'attendance_id' => $existingAttendance->id,
                 'break_start' => Carbon::now(),
             ]);
+            
+            return redirect()->route('user.attendance');
         }
 
         return redirect()->route('user.attendance')
-            ->with('success',);
+            ->with('error', '休憩処理を実行できません。');
     }
 
     // 勤怠登録機能-休憩戻処理
@@ -126,21 +129,30 @@ class AttendanceController extends Controller
                 ->with('error', '本日は出勤登録されていません。');
         }
 
-        // 出勤中であれば休憩戻処理を実行可能
+        // 休憩中であれば休憩戻処理を実行可能
         if ($existingAttendance->status === 'breaking') {
             // 勤怠ステータスを更新
             $existingAttendance->update([
                 'status' => 'working'
             ]);
 
-            // 休憩時間レコードを更新
-            BreakTime::where('attendance_id', $existingAttendance->id)->update([
-                'break_stop' => Carbon::now(),
-            ]);
+            // 最後の休憩時間レコードを更新（break_stopがnullのもの）
+            $lastBreak = BreakTime::where('attendance_id', $existingAttendance->id)
+                ->whereNull('break_stop')
+                ->latest()
+                ->first();
+            
+            if ($lastBreak) {
+                $lastBreak->update([
+                    'break_stop' => Carbon::now(),
+                ]);
+            }
 
-            return redirect()->route('user.attendance')
-            ->with('success',);
+            return redirect()->route('user.attendance');
         }
+        
+        return redirect()->route('user.attendance')
+            ->with('error', '休憩戻処理を実行できません。');
     }
 
     // 一般ユーザー用勤怠一覧画面表示

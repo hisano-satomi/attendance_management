@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 /**
@@ -31,7 +30,7 @@ class LoginTest extends TestCase
         // テスト用ユーザーを作成
         $user = User::factory()->create([
             'email' => 'test@example.com',
-            'password' => Hash::make('password123'), // パスワードをハッシュ化
+            'password' => 'password123', // setPasswordAttributeで自動的にハッシュ化される
         ]);
 
         // ログインリクエストを送信
@@ -59,7 +58,7 @@ class LoginTest extends TestCase
         // テスト用ユーザーを作成
         $user = User::factory()->create([
             'email' => 'test@example.com',
-            'password' => Hash::make('correct-password'),
+            'password' => 'correct-password', // setPasswordAttributeで自動的にハッシュ化される
         ]);
 
         // 間違ったパスワードでログインを試みる
@@ -189,13 +188,13 @@ class LoginTest extends TestCase
         // ユーザーA
         $userA = User::factory()->create([
             'email' => 'usera@example.com',
-            'password' => Hash::make('passwordA'),
+            'password' => 'passwordA', // setPasswordAttributeで自動的にハッシュ化される
         ]);
 
         // ユーザーB
         $userB = User::factory()->create([
             'email' => 'userb@example.com',
-            'password' => Hash::make('passwordB'),
+            'password' => 'passwordB', // setPasswordAttributeで自動的にハッシュ化される
         ]);
 
         // ユーザーAでログイン
