@@ -45,5 +45,9 @@ php artisan db:seed
 ・メールアドレス：taro@yamada.com  
 ・パスワード：password
 ## 一般ユーザーログイン情報
+### 山田花子
 ・メールアドレス：hanako@example.com  
+・パスワード：password
+### 佐藤三郎
+・メールアドレス：sato@sato.com  
 ・パスワード：password
